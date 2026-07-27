@@ -2,7 +2,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pt-40">
       <div className="mx-auto max-w-7xl px-6 text-center">
-        <h1 className="mx-auto max-w-4xl text-5xl font-semibold tracking-tight text-[#111111] md:text-7xl">
+        <h1 className="mx-auto max-w-4xl text-5xl font-semibold tracking-tight text-[#09090B] md:text-7xl">
           The Intelligent Workspace.
         </h1>
 
@@ -13,17 +13,17 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex justify-center gap-4">
-          <button className="rounded-full bg-[#2563EB] px-7 py-3 font-medium text-white">
+          <button className="rounded-full bg-black px-7 py-3 font-medium text-white transition hover:bg-neutral-800">
             Get Started
           </button>
 
-          <button className="rounded-full border px-7 py-3 font-medium">
+          <button className="rounded-full border border-neutral-200 bg-white px-7 py-3 font-medium text-black transition hover:bg-neutral-100">
             Watch Demo
           </button>
         </div>
 
-        <div className="mt-20 rounded-3xl border bg-neutral-50 p-6 shadow-sm">
-          <div className="aspect-video rounded-2xl bg-white border flex items-center justify-center">
+        <div className="mt-20 rounded-3xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
+          <div className="flex aspect-video items-center justify-center rounded-2xl border border-neutral-200 bg-white">
             <span className="text-neutral-400">
               Skildur Dashboard Preview
             </span>

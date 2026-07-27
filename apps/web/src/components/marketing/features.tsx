@@ -1,3 +1,5 @@
+import BorderGlow from "@/components/ui/BorderGlow";
+
 export function Features() {
   const features = [
     {
@@ -33,7 +35,7 @@ export function Features() {
   ];
 
   return (
-    <section className="py-32">
+    <section id="features" className="py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-medium uppercase tracking-[0.25em] text-neutral-500">
@@ -51,20 +53,35 @@ export function Features() {
 
         <div className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
-            <div
+            <BorderGlow
               key={feature.title}
-              className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              edgeSensitivity={15}
+              glowColor="245 90 85"
+              backgroundColor="#ffffff"
+              borderRadius={28}
+              glowRadius={88}
+              glowIntensity={1.2}
+              coneSpread={45}
+              animated={false}
+              colors={[
+  "#312E81",
+  "#4F46E5",
+  "#818CF8",
+]}
+              className="transition-transform duration-300 hover:-translate-y-1"
             >
-              <div className="mb-6 h-12 w-12 rounded-2xl bg-neutral-100" />
+              <div className="p-8">
+                <div className="mb-6 h-12 w-12 rounded-2xl bg-neutral-100" />
 
-              <h3 className="text-xl font-semibold text-neutral-900">
-                {feature.title}
-              </h3>
+                <h3 className="text-xl font-semibold text-neutral-900">
+                  {feature.title}
+                </h3>
 
-              <p className="mt-4 leading-7 text-neutral-600">
-                {feature.description}
-              </p>
-            </div>
+                <p className="mt-4 leading-7 text-neutral-600">
+                  {feature.description}
+                </p>
+              </div>
+            </BorderGlow>
           ))}
         </div>
       </div>

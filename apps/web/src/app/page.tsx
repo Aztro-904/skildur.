@@ -8,14 +8,14 @@ import { HowItWorks } from "@/components/marketing/how-it-works";
 import { Pricing } from "@/components/marketing/pricing";
 import { Roadmap } from "@/components/marketing/roadmap";
 import { CTA } from "@/components/marketing/cta";
-import {Footer} from "@/components/marketing/footer";
+import { Footer } from "@/components/marketing/footer";
 
 export default function Home() {
   return (
     <>
       <Navbar />
 
-      <main>
+      <main id="top">
         <Hero />
         <Problem />
         <ConnectedWorkspace />
@@ -25,8 +25,9 @@ export default function Home() {
         <Roadmap />
         <CTA />
         <TrustedSection />
-        <Footer />
       </main>
+
+      <Footer />
     </>
   );
 }
