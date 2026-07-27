@@ -1,7 +1,18 @@
+import { Hero } from "@/components/marketing/hero";
+import { Navbar } from "@/components/marketing/navbar";
+import { TrustedSection } from "@/components/marketing/trusted-section";
+import { ConnectedWorkspace } from "@/components/marketing/connected-workspace";
+
 export default function Home() {
   return (
-    <main>
-      <h1>Skildur</h1>
-    </main>
+    <>
+      <Navbar />
+
+      <main>
+        <Hero />
+        <ConnectedWorkspace />
+        <TrustedSection />
+      </main>
+    </>
   );
 }
