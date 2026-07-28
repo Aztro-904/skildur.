@@ -9,22 +9,40 @@ import { Pricing } from "@/components/marketing/pricing";
 import { Roadmap } from "@/components/marketing/roadmap";
 import { CTA } from "@/components/marketing/cta";
 import { Footer } from "@/components/marketing/footer";
+import { ProductPreview } from "@/components/marketing/product-preview";
 
 export default function Home() {
   return (
     <>
       <Navbar />
 
-      <main id="top">
+      <main
+        id="top"
+        className="
+          relative
+          isolate
+          overflow-x-hidden
+        "
+      >
         <Hero />
+
         <Problem />
+
         <ConnectedWorkspace />
-        <Features />
-        <HowItWorks />
-        <Pricing />
-        <Roadmap />
-        <CTA />
+
         <TrustedSection />
+
+        <ProductPreview />
+
+        <Features />
+
+        <HowItWorks />
+
+        <Roadmap />
+
+        <Pricing />
+
+        <CTA />
       </main>
 
       <Footer />

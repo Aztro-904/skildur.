@@ -154,7 +154,7 @@ export function Navbar() {
           <div className="flex items-center gap-4">
 
             <Link
-              href="/login"
+              href="/signin"
               className="
                 hidden
                 text-sm

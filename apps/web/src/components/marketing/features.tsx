@@ -1,185 +1,221 @@
-import BorderGlow from "@/components/ui/BorderGlow";
+const features = [
+  {
+    title: "Projects stay connected",
+    highlight: "connected",
+    description:
+      "Plan, track, and manage work while keeping every decision attached to the bigger picture.",
+    label: "Projects",
+  },
+  {
+    title: "Knowledge stays organised",
+    highlight: "organised",
+    description:
+      "Documents and information remain connected instead of disappearing across different tools.",
+    label: "Documents",
+  },
+  {
+    title: "AI understands context",
+    highlight: "context",
+    description:
+      "Skildur AI works with your entire workspace, not isolated fragments.",
+    label: "AI Assistant",
+  },
+];
 
 export function Features() {
-  const features = [
-    {
-      title: "Projects",
-      description:
-        "Plan, organise and execute work from one collaborative workspace.",
-    },
-    {
-      title: "Documents",
-      description:
-        "Write, organise and connect knowledge with everything else.",
-    },
-    {
-      title: "Dashboards",
-      description:
-        "Visualise progress, metrics and insights in real time.",
-    },
-    {
-      title: "Reports",
-      description:
-        "Generate professional reports from live workspace data.",
-    },
-    {
-      title: "AI",
-      description:
-        "An assistant that understands your entire workspace, not isolated files.",
-    },
-    {
-      title: "Automation",
-      description:
-        "Automate repetitive workflows across every part of your workspace.",
-    },
-  ];
-
   return (
-    <section id="features" className="relative overflow-hidden py-32">
-
-      {/* Ambient glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-40
-          -z-10
-          h-[500px]
-          w-[700px]
-          -translate-x-1/2
-          rounded-full
-          bg-indigo-500/10
-          blur-[140px]
-        "
-      />
+    <section
+      id="features"
+      className="relative overflow-hidden py-32"
+    >
 
       <div className="mx-auto max-w-7xl px-6">
 
-        <div className="mx-auto max-w-3xl text-center">
+
+        <div className="max-w-3xl">
 
           <p
             className="
               text-sm
               font-medium
               uppercase
-              tracking-[0.25em]
-              text-zinc-500
+              tracking-[0.3em]
+              text-indigo-400
             "
           >
-            Features
+            Capabilities
           </p>
 
 
           <h2
             className="
               mt-6
-              text-5xl
+              text-4xl
               font-semibold
-              tracking-tight
+              tracking-[-0.05em]
               text-white
+              md:text-6xl
             "
           >
-            Everything you need.
+            Built around how teams{" "}
+            <span className="text-indigo-400">
+              work.
+            </span>
           </h2>
 
-
-          <p
-            className="
-              mt-8
-              text-lg
-              leading-8
-              text-zinc-400
-            "
-          >
-            Built around one connected workspace instead of disconnected apps.
-          </p>
 
         </div>
 
 
-        <div className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-          {features.map((feature) => (
+        <div className="mt-24 space-y-20">
 
-            <BorderGlow
-              key={feature.title}
 
-              edgeSensitivity={18}
+          {features.map((feature, index) => (
 
-              /* Indigo Skildur glow */
-              glowColor="235 85 75"
-
-              backgroundColor="#111113"
-
-              borderRadius={28}
-
-              glowRadius={90}
-
-              glowIntensity={1.6}
-
-              coneSpread={45}
-
-              animated={false}
-
-              colors={[
-                "#312E81",
-                "#6366F1",
-                "#818CF8",
-              ]}
-
+            <div
+              key={feature.label}
               className="
-                transition-transform
-                duration-300
-                hover:-translate-y-2
+                grid
+                items-center
+                gap-12
+                md:grid-cols-2
               "
             >
 
-              <div className="p-8">
 
-                {/* Icon placeholder */}
-                <div
+              <div
+                className={
+                  index % 2 === 1
+                    ? "md:order-2"
+                    : ""
+                }
+              >
+
+                <p
                   className="
-                    mb-6
-                    h-12
-                    w-12
-                    rounded-2xl
-                    border
-                    border-white/10
-                    bg-white/5
-                    shadow-inner
+                    text-sm
+                    uppercase
+                    tracking-[0.25em]
+                    text-zinc-600
                   "
-                />
+                >
+                  {feature.label}
+                </p>
 
 
                 <h3
                   className="
-                    text-xl
+                    mt-5
+                    text-3xl
                     font-semibold
+                    tracking-tight
                     text-white
+                    md:text-4xl
                   "
                 >
-                  {feature.title}
+                  {feature.title.split(feature.highlight)[0]}
+
+                  <span className="text-indigo-400">
+                    {feature.highlight}
+                  </span>
+
+                  {feature.title.split(feature.highlight)[1]}
+
                 </h3>
 
 
                 <p
                   className="
-                    mt-4
-                    leading-7
+                    mt-6
+                    max-w-lg
+                    text-lg
+                    leading-8
                     text-zinc-400
                   "
                 >
                   {feature.description}
                 </p>
 
+
               </div>
 
-            </BorderGlow>
+
+
+              {/* Visual placeholder */}
+              <div
+                className="
+                  relative
+                  rounded-3xl
+                  border
+                  border-white/10
+                  bg-white/[0.03]
+                  p-8
+                  backdrop-blur-xl
+                "
+              >
+
+                <div
+                  className="
+                    aspect-[4/3]
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-black/40
+                    p-6
+                  "
+                >
+
+                  <div
+                    className="
+                      h-3
+                      w-24
+                      rounded-full
+                      bg-white/10
+                    "
+                  />
+
+
+                  <div className="mt-8 space-y-4">
+
+                    <div
+                      className="
+                        h-12
+                        rounded-xl
+                        bg-white/[0.05]
+                      "
+                    />
+
+                    <div
+                      className="
+                        h-12
+                        rounded-xl
+                        bg-white/[0.05]
+                      "
+                    />
+
+                    <div
+                      className="
+                        h-12
+                        rounded-xl
+                        bg-indigo-500/10
+                      "
+                    />
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </div>
 
           ))}
 
+
         </div>
+
 
       </div>
 

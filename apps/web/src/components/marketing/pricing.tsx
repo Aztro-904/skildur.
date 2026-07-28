@@ -1,107 +1,78 @@
 const plans = [
   {
-    name: "Free",
+    name: "Starter",
+    description:
+      "For individuals exploring a connected workspace.",
     price: "$0",
-    description: "Perfect for individuals getting started.",
-    button: "Get Started",
-    featured: false,
     features: [
-      "1 workspace",
-      "Up to 3 members",
-      "Unlimited documents",
+      "Personal workspace",
       "Basic projects",
-      "Basic dashboards",
-      "1 GB storage",
-      "Community support",
+      "Limited AI assistance",
     ],
   },
   {
-    name: "Pro",
+    name: "Team",
+    description:
+      "For teams building with clarity.",
     price: "$12",
-    description: "For professionals and small teams.",
-    button: "Start Pro",
     featured: true,
     features: [
-      "Everything in Free",
-      "Unlimited workspaces",
-      "Unlimited members",
-      "Advanced projects",
-      "Custom databases",
-      "Automations",
-      "Version history",
-      "100 GB storage",
-      "Priority support",
-    ],
-  },
-  {
-    name: "Business",
-    price: "$24",
-    description: "Built for growing companies.",
-    button: "Start Business",
-    featured: false,
-    features: [
-      "Everything in Pro",
-      "Admin console",
-      "Single Sign-On (SSO)",
-      "Audit logs",
-      "Team permissions",
-      "Team analytics",
-      "API access",
-      "1 TB shared storage",
-      "Priority support",
+      "Everything in Starter",
+      "Shared workspaces",
+      "Advanced AI context",
+      "Team collaboration",
     ],
   },
   {
     name: "Enterprise",
+    description:
+      "For organisations scaling intelligent work.",
     price: "Custom",
-    description: "For organisations with advanced needs.",
-    button: "Contact Sales",
-    featured: false,
     features: [
-      "Custom pricing",
-      "Unlimited storage",
       "Advanced security",
-      "Compliance",
+      "Custom workflows",
       "Dedicated support",
-      "Custom integrations",
-      "SLA",
-      "Custom contracts",
     ],
   },
 ];
 
 export function Pricing() {
   return (
-    <section id="pricing" className="relative overflow-hidden py-32">
+    <section
+      id="pricing"
+      className="relative overflow-hidden py-32"
+    >
 
-      {/* Glow */}
       <div
         className="
           pointer-events-none
           absolute
           left-1/2
-          top-1/3
+          top-0
           -z-10
           h-[500px]
           w-[700px]
           -translate-x-1/2
           rounded-full
           bg-indigo-500/10
-          blur-[140px]
+          blur-[160px]
         "
       />
 
+
       <div className="mx-auto max-w-7xl px-6">
 
-        <div className="mx-auto max-w-3xl text-center">
+
+        <div className="text-center">
+
 
           <p
             className="
               text-sm
               font-medium
               uppercase
-              tracking-[0.25em]
-              text-zinc-500
+              tracking-[0.3em]
+              text-indigo-400
             "
           >
             Pricing
@@ -111,85 +82,77 @@ export function Pricing() {
           <h2
             className="
               mt-6
-              text-5xl
+              text-4xl
               font-semibold
-              tracking-tight
+              tracking-[-0.05em]
               text-white
+              md:text-6xl
             "
           >
-            Simple, transparent pricing.
+            Simple plans.
+            <br />
+            Built to{" "}
+            <span className="text-indigo-400">
+              scale.
+            </span>
           </h2>
 
 
           <p
             className="
-              mt-8
+              mx-auto
+              mt-6
+              max-w-2xl
               text-lg
               leading-8
               text-zinc-400
             "
           >
-            Start for free and upgrade when your team needs more.
+            Start small and grow into a workspace designed around your team.
           </p>
+
 
         </div>
 
 
-        <div className="mt-20 grid gap-8 lg:grid-cols-4">
+
+        <div
+          className="
+            mt-20
+            grid
+            gap-6
+            md:grid-cols-3
+          "
+        >
 
           {plans.map((plan) => (
 
             <div
               key={plan.name}
               className={`
-                relative
                 rounded-3xl
                 border
                 p-8
+                backdrop-blur-xl
                 transition
-                duration-300
-                hover:-translate-y-2
-
                 ${
                   plan.featured
                     ? `
                       border-indigo-400/40
-                      bg-indigo-500/20
-                      shadow-[0_0_70px_rgba(99,102,241,0.25)]
+                      bg-indigo-500/10
+                      shadow-[0_30px_80px_rgba(99,102,241,0.18)]
                     `
                     : `
                       border-white/10
                       bg-white/[0.03]
-                      backdrop-blur-xl
                     `
                 }
               `}
             >
 
-              {plan.featured && (
-                <div
-                  className="
-                    absolute
-                    -top-3
-                    left-1/2
-                    -translate-x-1/2
-                    rounded-full
-                    bg-indigo-400
-                    px-4
-                    py-1
-                    text-xs
-                    font-medium
-                    text-white
-                  "
-                >
-                  Most Popular
-                </div>
-              )}
-
-
               <h3
                 className="
-                  text-2xl
+                  text-xl
                   font-semibold
                   text-white
                 "
@@ -201,6 +164,8 @@ export function Pricing() {
               <p
                 className="
                   mt-3
+                  text-sm
+                  leading-6
                   text-zinc-400
                 "
               >
@@ -208,15 +173,26 @@ export function Pricing() {
               </p>
 
 
-              <div className="mt-8 flex items-end gap-1">
-
-                <span className="text-5xl font-bold text-white">
-                  {plan.price}
-                </span>
+              <div
+                className="
+                  mt-8
+                  text-4xl
+                  font-semibold
+                  tracking-tight
+                  text-white
+                "
+              >
+                {plan.price}
 
                 {plan.price !== "Custom" && (
-                  <span className="text-zinc-500">
-                    /user/mo
+                  <span
+                    className="
+                      text-base
+                      font-normal
+                      text-zinc-500
+                    "
+                  >
+                    /month
                   </span>
                 )}
 
@@ -228,56 +204,71 @@ export function Pricing() {
                   mt-8
                   w-full
                   rounded-full
-                  px-5
                   py-3
+                  text-sm
                   font-medium
                   transition
-
                   ${
                     plan.featured
                       ? `
-                        bg-white
-                        text-indigo-600
-                        hover:bg-zinc-100
+                        bg-indigo-500
+                        text-white
+                        hover:bg-indigo-400
                       `
                       : `
-                        bg-white
-                        text-black
-                        hover:bg-zinc-200
+                        border
+                        border-white/10
+                        bg-white/[0.04]
+                        text-white
+                        hover:bg-white/[0.08]
                       `
                   }
                 `}
               >
-                {plan.button}
+                Get Started
               </button>
 
 
-              <ul className="mt-10 space-y-4">
+              <div className="mt-8 space-y-4">
 
                 {plan.features.map((feature) => (
 
-                  <li
+                  <div
                     key={feature}
                     className="
+                      flex
+                      items-center
+                      gap-3
                       text-sm
                       text-zinc-400
                     "
                   >
-                    <span className="text-indigo-400">
-                      ✓
-                    </span>{" "}
+
+                    <div
+                      className="
+                        h-1.5
+                        w-1.5
+                        rounded-full
+                        bg-indigo-400
+                      "
+                    />
+
                     {feature}
-                  </li>
+
+                  </div>
 
                 ))}
 
-              </ul>
+              </div>
+
 
             </div>
 
           ))}
 
+
         </div>
+
 
       </div>
 

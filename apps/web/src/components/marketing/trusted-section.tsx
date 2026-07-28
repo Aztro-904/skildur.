@@ -1,24 +1,25 @@
+const trustPoints = [
+  {
+    title: "Connected by design",
+    description:
+      "Projects, documents, dashboards, and AI are built to work together instead of living separately.",
+  },
+  {
+    title: "Privacy focused",
+    description:
+      "Your workspace is designed around control, ownership, and responsible handling of information.",
+  },
+  {
+    title: "Built for teams",
+    description:
+      "Skildur is designed for people who need clarity across complex workflows.",
+  },
+];
+
 export function TrustedSection() {
-  const companies = [
-    "Vertex",
-    "Northstar",
-    "Linear Labs",
-    "Atlas",
-    "Nova",
-  ];
-
   return (
-    <section
-      className="
-        relative
-        border-y
-        border-white/10
-        py-16
-        overflow-hidden
-      "
-    >
+    <section className="relative overflow-hidden py-24">
 
-      {/* subtle ambient glow */}
       <div
         className="
           pointer-events-none
@@ -26,61 +27,138 @@ export function TrustedSection() {
           left-1/2
           top-0
           -z-10
-          h-64
+          h-[400px]
           w-[600px]
           -translate-x-1/2
           rounded-full
           bg-indigo-500/10
-          blur-[120px]
+          blur-[150px]
         "
       />
 
 
       <div className="mx-auto max-w-7xl px-6">
 
-        <p
+
+        <div
           className="
-            text-center
-            text-sm
-            text-zinc-500
+            flex
+            flex-col
+            gap-6
+            border-y
+            border-white/10
+            py-16
+            md:flex-row
+            md:items-end
+            md:justify-between
           "
         >
-          Trusted by modern teams building the future
-        </p>
+
+          <div className="max-w-3xl">
+
+            <p
+              className="
+                text-sm
+                font-medium
+                uppercase
+                tracking-[0.3em]
+                text-indigo-400
+              "
+            >
+              Why Skildur
+            </p>
+
+
+            <h2
+              className="
+                mt-6
+                text-4xl
+                font-semibold
+                tracking-[-0.05em]
+                text-white
+                md:text-5xl
+              "
+            >
+              Built on{" "}
+              <span className="text-indigo-400">
+                trust.
+              </span>
+            </h2>
+
+
+          </div>
+
+
+          <p
+            className="
+              max-w-md
+              text-zinc-400
+              leading-7
+            "
+          >
+            Skildur is built with a focus on connected workflows, simplicity,
+            and giving teams a clearer way to work.
+          </p>
+
+
+        </div>
+
 
 
         <div
           className="
-            mt-10
+            mt-12
             grid
-            grid-cols-2
-            gap-8
-            text-center
-            text-lg
-            font-medium
-            text-zinc-500
-            md:grid-cols-5
+            gap-6
+            md:grid-cols-3
           "
         >
 
-          {companies.map((company) => (
+          {trustPoints.map((point) => (
 
             <div
-              key={company}
+              key={point.title}
               className="
-                transition
-                duration-300
-                hover:text-zinc-300
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/[0.03]
+                p-8
               "
             >
-              {company}
+
+              <h3
+                className="
+                  text-xl
+                  font-semibold
+                  text-white
+                "
+              >
+                {point.title}
+              </h3>
+
+
+              <p
+                className="
+                  mt-4
+                  leading-7
+                  text-zinc-400
+                "
+              >
+                {point.description}
+              </p>
+
+
             </div>
 
           ))}
 
+
         </div>
 
+
       </div>
+
 
     </section>
   );

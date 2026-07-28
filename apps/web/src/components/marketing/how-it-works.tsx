@@ -1,29 +1,40 @@
-export function HowItWorks() {
-  const steps = [
-    {
-      number: "01",
-      title: "Bring everything together",
-      description:
-        "Projects, documents, dashboards, reports and AI live in one connected workspace.",
-    },
-    {
-      number: "02",
-      title: "Everything stays connected",
-      description:
-        "Information links naturally, so context is never lost as your work grows.",
-    },
-    {
-      number: "03",
-      title: "AI understands your work",
-      description:
-        "Instead of isolated files, AI can reason across your entire workspace.",
-    },
-  ];
+const steps = [
+  {
+    number: "01",
+    title: (
+      <>
+        <span className="text-indigo-400">Connect</span> everything
+      </>
+    ),
+    description:
+      "Bring projects, documents, and knowledge into one shared workspace.",
+  },
+  {
+    number: "02",
+    title: (
+      <>
+        <span className="text-indigo-400">Understand</span> your work
+      </>
+    ),
+    description:
+      "Give your team and AI the full context behind every decision.",
+  },
+  {
+    number: "03",
+    title: (
+      <>
+        Move with <span className="text-indigo-400">clarity</span>
+      </>
+    ),
+    description:
+      "Turn connected information into faster, better decisions.",
+  },
+];
 
+export function HowItWorks() {
   return (
     <section className="relative overflow-hidden py-32">
 
-      {/* Ambient glow */}
       <div
         className="
           pointer-events-none
@@ -31,13 +42,13 @@ export function HowItWorks() {
           left-1/2
           top-1/2
           -z-10
-          h-[450px]
-          w-[700px]
+          h-[500px]
+          w-[500px]
           -translate-x-1/2
           -translate-y-1/2
           rounded-full
           bg-indigo-500/10
-          blur-[140px]
+          blur-[150px]
         "
       />
 
@@ -45,16 +56,15 @@ export function HowItWorks() {
       <div className="mx-auto max-w-7xl px-6">
 
 
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="text-center">
 
           <p
             className="
               text-sm
               font-medium
               uppercase
-              tracking-[0.25em]
-              text-zinc-500
+              tracking-[0.3em]
+              text-indigo-400
             "
           >
             How It Works
@@ -63,62 +73,51 @@ export function HowItWorks() {
 
           <h2
             className="
+              mx-auto
               mt-6
-              text-5xl
+              max-w-3xl
+              text-4xl
               font-semibold
-              tracking-tight
+              tracking-[-0.05em]
               text-white
+              md:text-6xl
             "
           >
-            Three simple steps.
+            From scattered to{" "}
+            <span className="text-indigo-400">
+              connected.
+            </span>
           </h2>
-
-
-          <p
-            className="
-              mt-8
-              text-lg
-              leading-8
-              text-zinc-400
-            "
-          >
-            Skildur removes complexity by keeping everything connected from the
-            beginning.
-          </p>
 
         </div>
 
 
-        {/* Steps */}
-        <div className="mt-20 grid gap-8 md:grid-cols-3">
+
+        <div
+          className="
+            mt-24
+            grid
+            gap-12
+            md:grid-cols-3
+          "
+        >
 
           {steps.map((step) => (
 
             <div
               key={step.number}
               className="
-                group
-                rounded-3xl
-                border
+                border-t
                 border-white/10
-                bg-white/[0.03]
-                p-8
-                shadow-[0_20px_60px_rgba(0,0,0,0.25)]
-                backdrop-blur-xl
-                transition
-                duration-300
-                hover:-translate-y-2
-                hover:border-indigo-400/30
+                pt-8
               "
             >
 
               <p
                 className="
-                  text-5xl
-                  font-semibold
-                  text-indigo-400
-                  transition
-                  group-hover:text-indigo-300
+                  text-sm
+                  font-medium
+                  text-zinc-600
                 "
               >
                 {step.number}
@@ -130,6 +129,7 @@ export function HowItWorks() {
                   mt-8
                   text-2xl
                   font-semibold
+                  tracking-tight
                   text-white
                 "
               >
@@ -139,7 +139,7 @@ export function HowItWorks() {
 
               <p
                 className="
-                  mt-4
+                  mt-5
                   leading-7
                   text-zinc-400
                 "
@@ -147,11 +147,13 @@ export function HowItWorks() {
                 {step.description}
               </p>
 
+
             </div>
 
           ))}
 
         </div>
+
 
       </div>
 

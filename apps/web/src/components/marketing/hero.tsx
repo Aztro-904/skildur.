@@ -1,10 +1,30 @@
+"use client";
+
 import Link from "next/link";
+import AnimatedHeading from "@/components/ui/AnimatedHeading";
+
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-40">
+    <section className="relative overflow-hidden pt-44">
 
-      {/* Ambient background glow */}
+      {/* Atmosphere */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-[-200px]
+          -z-10
+          h-[700px]
+          w-[900px]
+          -translate-x-1/2
+          rounded-full
+          bg-indigo-500/20
+          blur-[180px]
+        "
+      />
+
       <div
         className="
           pointer-events-none
@@ -12,139 +32,178 @@ export function Hero() {
           left-1/2
           top-0
           -z-10
-          h-[600px]
-          w-[900px]
+          h-[500px]
+          w-[500px]
           -translate-x-1/2
           rounded-full
-          bg-indigo-500/20
-          blur-[140px]
+          border
+          border-indigo-400/10
+          opacity-50
         "
       />
 
+
       <div className="mx-auto max-w-7xl px-6 text-center">
 
-        <h1
-          className="
-            mx-auto
-            max-w-4xl
-            text-5xl
-            font-semibold
-            tracking-tight
-            text-white
-            md:text-7xl
-          "
-        >
-          The Intelligent Workspace.
-        </h1>
+
+        <div className="mx-auto max-w-5xl">
 
 
-        <p
-          className="
-            mx-auto
-            mt-6
-            max-w-2xl
-            text-lg
-            leading-8
-            text-zinc-400
-          "
-        >
-          Connect projects, documents, dashboards, reports, and AI into one
-          modern workspace where everything stays organised, searchable, and
-          actionable.
-        </p>
-
-
-        <div className="mt-10 flex justify-center gap-4">
-
-          <Link
-            href="/signup"
+          <p
             className="
-              rounded-full
-              bg-indigo-500
-              px-7
-              py-3
+              mb-8
+              text-sm
               font-medium
-              text-white
-              shadow-[0_0_40px_rgba(99,102,241,0.35)]
-              transition
-              hover:-translate-y-0.5
-              hover:bg-indigo-400
+              uppercase
+              tracking-[0.35em]
+              text-indigo-400
             "
           >
-            Get Started
-          </Link>
+            The Intelligent Workspace
+          </p>
 
 
-          <button
+          <h1
+  className="
+    text-5xl
+    font-semibold
+    leading-[1.05]
+    tracking-[-0.06em]
+    text-white
+    md:text-7xl
+  "
+>
+  <AnimatedHeading
+    hero
+    text="Your work,"
+    
+    className="inline"
+  />
+
+  <br />
+
+  <span className="text-indigo-400">
+    <AnimatedHeading
+      hero
+      text="connected."
+      
+      className="inline"
+    />
+  </span>
+</h1>
+
+
+          <div
             className="
-              rounded-full
-              border
-              border-white/10
-              bg-white/5
-              px-7
-              py-3
-              font-medium
-              text-white
-              backdrop-blur-xl
-              transition
-              hover:bg-white/10
+              mt-10
+              flex
+              justify-center
+              gap-4
             "
           >
-            Watch Demo
-          </button>
+
+            <Link
+              href="/signup"
+              className="
+                rounded-full
+                bg-indigo-500
+                px-7
+                py-3
+                font-medium
+                text-white
+                shadow-[0_0_50px_rgba(99,102,241,0.35)]
+                transition
+                hover:-translate-y-0.5
+                hover:bg-indigo-400
+              "
+            >
+              Get Started
+            </Link>
+
+
+            <Link
+              href="#product"
+              className="
+                rounded-full
+                border
+                border-white/10
+                bg-white/[0.04]
+                px-7
+                py-3
+                font-medium
+                text-white
+                backdrop-blur-xl
+                transition
+                hover:bg-white/[0.08]
+              "
+            >
+              Explore Skildur
+            </Link>
+
+          </div>
 
         </div>
 
 
-        {/* Dashboard Preview */}
+
+        {/* Product frame preview */}
         <div
           className="
             relative
-            mt-20
+            mt-24
             rounded-3xl
             border
             border-white/10
             bg-white/[0.03]
-            p-6
-            shadow-[0_30px_100px_rgba(0,0,0,0.5)]
+            p-4
+            shadow-[0_40px_120px_rgba(0,0,0,0.6)]
             backdrop-blur-xl
           "
         >
 
-          {/* Preview glow */}
           <div
             className="
-              pointer-events-none
               absolute
               inset-0
               rounded-3xl
               bg-gradient-to-b
               from-indigo-500/10
+              via-transparent
               to-transparent
             "
           />
 
+
           <div
             className="
               relative
-              flex
               aspect-video
-              items-center
-              justify-center
               rounded-2xl
               border
               border-white/10
-              bg-black/40
+              bg-black/50
             "
           >
-            <span className="text-zinc-500">
-              Skildur Dashboard Preview
-            </span>
+
+            <div
+              className="
+                flex
+                h-full
+                items-center
+                justify-center
+                text-zinc-600
+              "
+            >
+              Skildur Workspace
+            </div>
+
           </div>
 
         </div>
 
+
       </div>
+
     </section>
   );
 }

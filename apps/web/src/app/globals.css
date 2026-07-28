@@ -1,109 +1,139 @@
 @import "tailwindcss";
 
 :root {
-  /* Skildur Dark System */
+  --background: #040404;
+  --foreground: #ffffff;
 
-  --background: #09090b;
-  --foreground: #f4f4f5;
-
-  --surface: #111113;
-  --surface-hover: #18181b;
-
-  --muted: #18181b;
-  --muted-foreground: #a1a1aa;
-
-  --border: rgba(255, 255, 255, 0.1);
-
-  /* Brand */
-  --primary: #ffffff;
-  --primary-hover: #e4e4e7;
-
-  --accent: #6366f1;
-  --accent-bright: #818cf8;
-  --accent-deep: #312e81;
-
-  --accent-soft: rgba(99, 102, 241, 0.15);
-
-  --secondary: #a1a1aa;
+  color-scheme: dark;
 }
 
-
-/* Global border behaviour */
-* {
-  border-color: var(--border);
-}
-
-
-/* Smooth anchor scrolling */
 html {
   scroll-behavior: smooth;
-  background: #09090b;
+  background: var(--background);
 }
 
-
-/* Main page */
 body {
-  background:
-    radial-gradient(
-      circle at 50% -20%,
-      rgba(99, 102, 241, 0.18),
-      transparent 40%
-    ),
-    #09090b;
+  min-height: 100vh;
+  overflow-x: hidden;
 
+  background: transparent;
   color: var(--foreground);
 
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-
-  min-height: 100vh;
-}
-
-
-/* Better text rendering */
-body {
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 
+/* -------------------------------- */
+/* Global Borders */
+/* -------------------------------- */
+
+*,
+*::before,
+*::after {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* -------------------------------- */
+/* Typography */
+/* -------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.04em;
+}
+
+p {
+  color: rgb(161 161 170);
+}
+
+
+/* -------------------------------- */
 /* Selection */
+/* -------------------------------- */
+
 ::selection {
-  background: rgba(99, 102, 241, 0.35);
+  background: rgba(99, 102, 241, 0.4);
   color: white;
 }
 
 
+/* -------------------------------- */
 /* Scrollbar */
+/* -------------------------------- */
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #060606;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: rgba(99, 102, 241, 0.3);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: rgba(99, 102, 241, 0.5);
 }
 
 
-/* Utility glow */
-.skildur-glow {
-  background:
-    radial-gradient(
-      circle,
-      rgba(99, 102, 241, 0.25),
-      transparent 70%
-    );
+/* -------------------------------- */
+/* Premium Noise Layer */
+/* -------------------------------- */
+
+body::after {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.025;
+
+  z-index: -30;
+
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,.07) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,.05) 1px, transparent 1px);
+
+  background-size: 28px 28px;
 }
 
 
-/* Prevent image stretching */
-img {
-  height: auto;
+/* -------------------------------- */
+/* Better Focus */
+/* -------------------------------- */
+
+:focus-visible {
+  outline: 2px solid rgba(99,102,241,.6);
+  outline-offset: 3px;
+}
+
+
+/* -------------------------------- */
+/* Smooth Everything */
+/* -------------------------------- */
+
+button,
+a,
+input,
+textarea,
+svg {
+  transition:
+    background-color .25s ease,
+    border-color .25s ease,
+    color .25s ease,
+    opacity .25s ease,
+    transform .25s ease,
+    box-shadow .25s ease;
 }

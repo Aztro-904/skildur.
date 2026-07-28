@@ -1,68 +1,61 @@
+const roadmap = [
+  {
+    phase: "Now",
+    title: "The connected workspace",
+    description:
+      "A unified place for projects, documents, dashboards, and everything your team needs.",
+  },
+  {
+    phase: "Next",
+    title: "Deeper intelligence",
+    description:
+      "AI that understands your workflows, decisions, and the context behind your work.",
+  },
+  {
+    phase: "Future",
+    title: "A smarter way to work",
+    description:
+      "A workspace that continuously adapts around how people create and collaborate.",
+  },
+];
+
 export function Roadmap() {
-  const items = [
-    {
-      title: "Projects",
-      status: "MVP",
-      description: "Plan and manage work from one place.",
-    },
-    {
-      title: "Documents",
-      status: "MVP",
-      description: "Write and organise connected knowledge.",
-    },
-    {
-      title: "Dashboards",
-      status: "MVP",
-      description: "Track progress with live metrics.",
-    },
-    {
-      title: "Reports",
-      status: "MVP",
-      description: "Generate professional reports.",
-    },
-    {
-      title: "Workspace AI",
-      status: "Coming Soon",
-      description: "An assistant that understands your entire workspace.",
-    },
-    {
-      title: "Automation",
-      status: "Coming Soon",
-      description: "Automate repetitive workflows.",
-    },
-  ];
-
   return (
-    <section className="relative overflow-hidden py-32">
+    <section
+      id="roadmap"
+      className="relative overflow-hidden py-32"
+    >
 
-      {/* Background glow */}
       <div
         className="
           pointer-events-none
           absolute
-          right-0
-          top-1/4
+          right-[-200px]
+          top-1/2
           -z-10
           h-[500px]
-          w-[600px]
+          w-[500px]
+          -translate-y-1/2
           rounded-full
           bg-indigo-500/10
-          blur-[140px]
+          blur-[150px]
         "
       />
 
 
       <div className="mx-auto max-w-7xl px-6">
 
-        <div className="mx-auto max-w-3xl text-center">
+
+        <div className="max-w-3xl">
+
 
           <p
             className="
               text-sm
               font-medium
               uppercase
-              tracking-[0.25em]
-              text-zinc-500
+              tracking-[0.3em]
+              text-indigo-400
             "
           >
             Roadmap
@@ -72,65 +65,80 @@ export function Roadmap() {
           <h2
             className="
               mt-6
-              text-5xl
+              text-4xl
               font-semibold
-              tracking-tight
+              tracking-[-0.05em]
               text-white
+              md:text-6xl
             "
           >
-            Built for today.
-            <br />
-            Growing tomorrow.
+            Building the next{" "}
+            <span className="text-indigo-400">
+              layer.
+            </span>
           </h2>
 
 
           <p
             className="
-              mt-8
+              mt-6
+              max-w-2xl
               text-lg
               leading-8
               text-zinc-400
             "
           >
-            We're focused on building a rock-solid workspace first, then
-            expanding into intelligent automation and AI.
+            Skildur is evolving toward a future where information, people, and
+            intelligence work together naturally.
           </p>
+
 
         </div>
 
 
-        <div className="mt-20 grid gap-6 md:grid-cols-2">
 
-          {items.map((item) => (
+        <div className="mt-20 space-y-6">
+
+
+          {roadmap.map((item) => (
 
             <div
-              key={item.title}
+              key={item.phase}
               className="
                 group
-                flex
-                items-start
-                justify-between
+                grid
+                gap-6
                 rounded-3xl
                 border
                 border-white/10
                 bg-white/[0.03]
                 p-8
-                backdrop-blur-xl
-                transition-all
-                duration-300
-                hover:-translate-y-1
+                transition
                 hover:border-indigo-400/30
-                hover:bg-white/[0.05]
-                hover:shadow-[0_20px_60px_rgba(99,102,241,0.12)]
+                md:grid-cols-[120px_1fr]
               "
             >
+
+              <div
+                className="
+                  text-sm
+                  font-medium
+                  uppercase
+                  tracking-[0.25em]
+                  text-zinc-500
+                "
+              >
+                {item.phase}
+              </div>
+
 
               <div>
 
                 <h3
                   className="
-                    text-xl
+                    text-2xl
                     font-semibold
+                    tracking-tight
                     text-white
                   "
                 >
@@ -141,51 +149,28 @@ export function Roadmap() {
                 <p
                   className="
                     mt-3
+                    max-w-2xl
+                    leading-7
                     text-zinc-400
                   "
                 >
                   {item.description}
                 </p>
 
+
               </div>
 
-
-              <span
-                className={`
-                  rounded-full
-                  px-3
-                  py-1
-                  text-xs
-                  font-semibold
-                  backdrop-blur-md
-
-                  ${
-                    item.status === "MVP"
-                      ? `
-                        bg-indigo-500/20
-                        text-indigo-300
-                        border
-                        border-indigo-400/20
-                      `
-                      : `
-                        bg-white/5
-                        text-zinc-400
-                        border
-                        border-white/10
-                      `
-                  }
-                `}
-              >
-                {item.status}
-              </span>
 
             </div>
 
           ))}
 
+
         </div>
 
+
       </div>
+
 
     </section>
   );

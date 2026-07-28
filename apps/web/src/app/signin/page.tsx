@@ -6,7 +6,7 @@ import SocialLogin from "@/components/account/SocialLogin";
 import SpecularButton from "@/components/ui/SpecularButton";
 import Link from "next/link";
 
-export default function SignupPage() {
+export default function SigninPage() {
   return (
     <main
       className="
@@ -28,7 +28,7 @@ export default function SignupPage() {
       </div>
 
 
-      {/* Signup content layer */}
+      {/* Sign in content layer */}
       <div
         className="
           relative
@@ -40,6 +40,7 @@ export default function SignupPage() {
           px-6
         "
       >
+        
         <Link
   href="/"
   className="
@@ -57,22 +58,19 @@ export default function SignupPage() {
 </Link>
         
         
+        
+        
         <AccountCard>
 
           <AccountHeader
-            title="Create your workspace"
-            description="Start building your connected workspace with Skildur."
+            title="Welcome back"
+            description="Continue to your Skildur workspace."
           />
 
 
           <div className="mt-8 space-y-4">
 
             <SocialLogin />
-
-
-            <AccountInput
-              placeholder="Full name"
-            />
 
 
             <AccountInput
@@ -104,7 +102,7 @@ export default function SignupPage() {
               proximity={300}
               autoAnimate={false}
             >
-              Create Workspace
+              Sign In
             </SpecularButton>
 
           </div>
@@ -118,7 +116,7 @@ export default function SignupPage() {
               text-zinc-500
             "
           >
-            Already have an account? Sign in
+            Don't have an account? Create one
           </p>
 
         </AccountCard>
