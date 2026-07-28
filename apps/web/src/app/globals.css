@@ -1,32 +1,109 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #09090b;
+  /* Skildur Dark System */
 
-  --surface: #fafafa;
-  --muted: #f4f4f5;
-  --border: #e4e4e7;
+  --background: #09090b;
+  --foreground: #f4f4f5;
 
-  --primary: #09090b;
-  --primary-hover: #18181b;
+  --surface: #111113;
+  --surface-hover: #18181b;
 
-  --accent: #1e1b4b;
-  --accent-soft: #eef2ff;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
 
-  --secondary: #71717a;
+  --border: rgba(255, 255, 255, 0.1);
+
+  /* Brand */
+  --primary: #ffffff;
+  --primary-hover: #e4e4e7;
+
+  --accent: #6366f1;
+  --accent-bright: #818cf8;
+  --accent-deep: #312e81;
+
+  --accent-soft: rgba(99, 102, 241, 0.15);
+
+  --secondary: #a1a1aa;
 }
 
+
+/* Global border behaviour */
 * {
   border-color: var(--border);
 }
 
+
+/* Smooth anchor scrolling */
 html {
   scroll-behavior: smooth;
+  background: #09090b;
 }
 
+
+/* Main page */
 body {
-  background: var(--background);
+  background:
+    radial-gradient(
+      circle at 50% -20%,
+      rgba(99, 102, 241, 0.18),
+      transparent 40%
+    ),
+    #09090b;
+
   color: var(--foreground);
+
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+
+  min-height: 100vh;
+}
+
+
+/* Better text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: white;
+}
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+
+/* Utility glow */
+.skildur-glow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.25),
+      transparent 70%
+    );
+}
+
+
+/* Prevent image stretching */
+img {
+  height: auto;
 }

@@ -19,22 +19,21 @@ export function Navbar() {
           flex
           h-16
           max-w-7xl
-          items-center
           overflow-hidden
           rounded-2xl
           border
-          border-white/20
-          bg-white/30
+          border-white/10
+          bg-black/40
           px-6
-          shadow-[0_10px_40px_rgba(30,27,75,0.10)]
+          shadow-[0_10px_50px_rgba(0,0,0,0.45)]
           backdrop-blur-2xl
-          backdrop-saturate-200
+          backdrop-saturate-150
           transition-all
           duration-500
         "
       >
 
-        {/* Liquid glass highlight */}
+        {/* Liquid glass reflection */}
         <div
           className="
             pointer-events-none
@@ -42,8 +41,25 @@ export function Navbar() {
             inset-0
             rounded-2xl
             bg-gradient-to-b
-            from-white/20
+            from-white/10
+            via-transparent
             to-transparent
+          "
+        />
+
+        {/* Blue ambient glow */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -top-20
+            left-1/2
+            h-40
+            w-80
+            -translate-x-1/2
+            rounded-full
+            bg-indigo-500/20
+            blur-3xl
           "
         />
 
@@ -52,7 +68,7 @@ export function Navbar() {
           {/* Logo */}
           <NavbarLink href="#top" className="flex items-center">
             <Image
-              src="/brand/light-logo.svg"
+              src="/brand/dark-logo-nobg.png"
               alt="Skildur"
               width={140}
               height={36}
@@ -73,10 +89,10 @@ export function Navbar() {
                     group
                     relative
                     text-sm
-                    text-neutral-600
+                    text-zinc-400
                     transition
                     duration-300
-                    hover:text-[#1E1B4B]
+                    hover:text-white
                   "
                 >
                   {item.label}
@@ -89,8 +105,8 @@ export function Navbar() {
                       h-[2px]
                       w-0
                       rounded-full
-                      bg-[#1E1B4B]
-                      shadow-[0_0_10px_#1E1B4B]
+                      bg-indigo-400
+                      shadow-[0_0_14px_#818CF8]
                       transition-all
                       duration-300
                       group-hover:w-full
@@ -105,10 +121,10 @@ export function Navbar() {
                     group
                     relative
                     text-sm
-                    text-neutral-600
+                    text-zinc-400
                     transition
                     duration-300
-                    hover:text-[#1E1B4B]
+                    hover:text-white
                   "
                 >
                   {item.label}
@@ -121,8 +137,8 @@ export function Navbar() {
                       h-[2px]
                       w-0
                       rounded-full
-                      bg-[#1E1B4B]
-                      shadow-[0_0_10px_#1E1B4B]
+                      bg-indigo-400
+                      shadow-[0_0_14px_#818CF8]
                       transition-all
                       duration-300
                       group-hover:w-full
@@ -135,17 +151,17 @@ export function Navbar() {
 
 
           {/* Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
 
             <Link
               href="/login"
               className="
                 hidden
                 text-sm
-                text-neutral-600
+                text-zinc-400
                 transition
                 duration-300
-                hover:text-[#1E1B4B]
+                hover:text-white
                 md:block
               "
             >
@@ -157,16 +173,22 @@ export function Navbar() {
               <SpecularButton
                 size="md"
                 radius={999}
-                tint="#1E1B4B"
+
+                /* Dark premium purple glass */
+                tint="#6366F1"
                 tintOpacity={0.35}
-                blur={6}
+                blur={8}
+
                 textColor="#ffffff"
-                lineColor="#A78BFA"
-                baseColor="#4C1D95"
-                intensity={1.6}
-                shineSize={16}
-                shineFade={55}
+
+                lineColor="#C4B5FD"
+                baseColor="#4338CA"
+
+                intensity={2}
+                shineSize={18}
+                shineFade={60}
                 thickness={2}
+
                 speed={0.35}
                 followMouse
                 proximity={300}
