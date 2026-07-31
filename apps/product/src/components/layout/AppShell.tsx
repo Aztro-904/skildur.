@@ -1,22 +1,22 @@
-import { Sidebar } from "./Sidebar";
-import { Topbar } from "./Topbar";
+import { Sidebar } from "@/components/shell/Sidebar";
+import { Topbar } from "@/components/shell/Topbar";
 
-export function AppShell({
-  children,
-}: {
+interface AppShellProps {
   children: React.ReactNode;
-}) {
+}
+
+export function AppShell({ children }: AppShellProps) {
   return (
-    <div className="flex min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <div className="flex h-screen overflow-hidden">
       <Sidebar />
 
-      <div className="flex flex-1 flex-col">
+      <main className="flex flex-1 flex-col">
         <Topbar />
 
-        <main className="flex-1 p-6">
+        <div className="flex-1 overflow-y-auto">
           {children}
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }
