@@ -14,7 +14,7 @@ import {
 
 const items = [
   { icon: Home, label: "Home", href: "/" },
-  { icon: FolderKanban, label: "Objects", href: "/workspace" },
+  { icon: FolderKanban, label: "Objects", href: "/objects" },
   { icon: BookOpen, label: "Knowledge", href: "/knowledge" },
   { icon: FileText, label: "Documents", href: "/documents" },
   { icon: Database, label: "Data", href: "/data" },

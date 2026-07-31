@@ -12,3 +12,9 @@ export interface SkildurObject {
   description?: string;
   connections: string[];
 }
+
+export interface WorkspaceEntity {
+  id: string;
+  name: string;
+  type: string;
+}

@@ -3,9 +3,17 @@ import { ObjectList } from "@/features/objects/components/ObjectList";
 import { RelatedObjects } from "@/features/objects/components/RelatedObjects";
 import { RelationshipView } from "@/features/objects/components/RelationshipView";
 
-export default function WorkspacePage() {
-  const mainObject = objects[0];
+export default async function ObjectsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ object?: string }>;
+}) {
+  const params = await searchParams;
 
+  const selected =
+    objects.find((item) => item.id === params.object) ??
+    objects[0];
+    
   return (
     <div className="space-y-8 p-8">
       <div>
@@ -21,12 +29,12 @@ export default function WorkspacePage() {
       <ObjectList objects={objects} />
 
       <RelatedObjects
-        object={mainObject}
+        object={selected}
         allObjects={objects}
       />
 
       <RelationshipView
-        object={mainObject}
+        object={selected}
         allObjects={objects}
       />
     </div>
