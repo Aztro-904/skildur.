@@ -1,7 +1,14 @@
-export interface WorkspaceEntity {
+export type ObjectType =
+  | "project"
+  | "document"
+  | "person"
+  | "data"
+  | "knowledge";
+
+export interface SkildurObject {
   id: string;
-  name: string;
+  title: string;
+  type: ObjectType;
   description?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  connections: string[];
 }
