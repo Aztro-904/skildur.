@@ -1,6 +1,6 @@
-export interface Workspace {
+export interface WorkspaceObject {
   id: string;
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
+  title: string;
+  description?: string;
+  updatedAt: string;
 }

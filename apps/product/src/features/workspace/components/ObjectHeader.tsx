@@ -1,13 +1,21 @@
-export function ObjectHeader() {
+import type { WorkspaceObject } from "../types";
+
+interface ObjectHeaderProps {
+  object: WorkspaceObject;
+}
+
+export function ObjectHeader({ object }: ObjectHeaderProps) {
   return (
     <header className="border-b border-[var(--border)] pb-6">
-      <h1 className="text-3xl font-semibold">
-        Untitled Object
+      <h1 className="text-3xl font-semibold tracking-tight">
+        {object.title}
       </h1>
 
-      <p className="mt-2 text-sm text-[var(--muted)]">
-        Connected workspace
-      </p>
+      {object.description && (
+        <p className="mt-2 text-sm text-[var(--text-secondary)]">
+          {object.description}
+        </p>
+      )}
     </header>
   );
 }
