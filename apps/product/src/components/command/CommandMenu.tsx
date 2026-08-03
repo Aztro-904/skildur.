@@ -11,6 +11,9 @@ export function CommandMenu({
 }) {
   const router = useRouter();
 
+  const itemClass =
+    "rounded-lg px-3 py-3 text-sm text-white hover:bg-white/10";
+
   return (
     <Command className="max-h-[600px] w-[700px] overflow-hidden rounded-2xl border border-white/10 bg-[#09090B] shadow-2xl">
       <Command.Input
@@ -35,7 +38,7 @@ export function CommandMenu({
                 onClose();
                 router.push(`/objects?object=${object.id}`);
               }}
-              className="rounded-lg px-3 py-3 text-sm text-white hover:bg-white/10"
+              className={itemClass}
             >
               <div>
                 <p>{object.title}</p>
@@ -56,7 +59,7 @@ export function CommandMenu({
               onClose();
               router.push("/");
             }}
-            className="rounded-lg px-3 py-3 text-sm text-white hover:bg-white/10"
+            className={itemClass}
           >
             Go to Home
           </Command.Item>
@@ -66,9 +69,19 @@ export function CommandMenu({
               onClose();
               router.push("/objects");
             }}
-            className="rounded-lg px-3 py-3 text-sm text-white hover:bg-white/10"
+            className={itemClass}
           >
             Open Objects
+          </Command.Item>
+
+          <Command.Item
+            onSelect={() => {
+              onClose();
+              router.push("/knowledge");
+            }}
+            className={itemClass}
+          >
+            Open Knowledge
           </Command.Item>
         </Command.Group>
 
@@ -77,13 +90,15 @@ export function CommandMenu({
           className="px-2 py-2 text-xs text-white/40"
         >
           <Command.Item
-            className="rounded-lg px-3 py-3 text-sm text-white hover:bg-white/10"
+            disabled
+            className={`${itemClass} cursor-not-allowed opacity-50`}
           >
             Create Object
           </Command.Item>
 
           <Command.Item
-            className="rounded-lg px-3 py-3 text-sm text-white hover:bg-white/10"
+            disabled
+            className={`${itemClass} cursor-not-allowed opacity-50`}
           >
             Create Document
           </Command.Item>

@@ -2,6 +2,7 @@ import { objects } from "@/features/objects/data";
 import { ObjectList } from "@/features/objects/components/ObjectList";
 import { RelatedObjects } from "@/features/objects/components/RelatedObjects";
 import { RelationshipView } from "@/features/objects/components/RelationshipView";
+import { KnowledgePanel } from "@/features/objects/components/KnowledgePanel";
 
 export default async function ObjectsPage({
   searchParams,
@@ -37,6 +38,8 @@ export default async function ObjectsPage({
         object={selected}
         allObjects={objects}
       />
+
+      <KnowledgePanel objectId={selected.id} />
     </div>
   );
 }
