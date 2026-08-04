@@ -1,17 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
 import { knowledgeItems as initialItems } from "@/features/knowledge/data";
-import { Editor } from "@/features/knowledge/components/Editor";
 import type { KnowledgeItem } from "@/features/knowledge/types";
+
+import { KnowledgeWorkspace } from "@/features/knowledge/components/KnowledgeWorkspace";
+import { KnowledgeSidebar } from "@/features/knowledge/components/KnowledgeSidebar";
+import { KnowledgeHeader } from "@/features/knowledge/components/KnowledgeHeader";
+import { KnowledgeContext } from "@/features/knowledge/components/KnowledgeContext";
+import { Editor } from "@/features/knowledge/components/Editor";
+import { LinkObjectButton } from "@/features/knowledge/components/LinkButton";
+import { DocumentMenu } from "@/features/knowledge/components/DocumentMenu";
+
 
 const STORAGE_KEY = "skildur-knowledge";
 
+
 export default function KnowledgePage() {
+
   const [items, setItems] = useState<KnowledgeItem[]>(initialItems);
-  const [selected, setSelected] = useState<KnowledgeItem>(
-    initialItems[0]
+
+  const [selectedId, setSelectedId] = useState(
+    initialItems[0]?.id ?? ""
   );
+
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -20,9 +33,10 @@ export default function KnowledgePage() {
       const parsed = JSON.parse(saved);
 
       setItems(parsed);
-      setSelected(parsed[0]);
+      setSelectedId(parsed[0]?.id ?? "");
     }
   }, []);
+
 
   useEffect(() => {
     localStorage.setItem(
@@ -31,71 +45,335 @@ export default function KnowledgePage() {
     );
   }, [items]);
 
+
+
+  const selected = useMemo(
+    () =>
+      items.find(
+        (item) => item.id === selectedId
+      ),
+    [items, selectedId]
+  );
+
+
+
   function createDocument() {
-    const doc: KnowledgeItem = {
+
+    const document: KnowledgeItem = {
       id: crypto.randomUUID(),
       title: "Untitled",
       type: "document",
       content: "",
       linkedObjects: [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
 
-    const updated = [...items, doc];
 
-    setItems(updated);
-    setSelected(doc);
+    setItems((current) => [
+      ...current,
+      document,
+    ]);
+
+    setSelectedId(document.id);
   }
 
-  return (
-    <div className="flex h-full">
-      <aside className="w-72 border-r border-white/10 p-5">
-        <button
-          onClick={createDocument}
-          className="mb-5 w-full rounded-lg bg-white px-3 py-2 text-sm text-black"
-        >
-          New Document
-        </button>
 
-        <div className="space-y-1">
-          {items.map((item) => (
+
+  function renameDocument(id: string) {
+
+    const document = items.find(
+      (item) => item.id === id
+    );
+
+    if (!document) return;
+
+
+    const title = prompt(
+      "Rename document",
+      document.title
+    );
+
+
+    if (!title?.trim()) return;
+
+
+    setItems((current) =>
+      current.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              title: title.trim(),
+              updatedAt: new Date().toISOString(),
+            }
+          : item
+      )
+    );
+  }
+
+
+
+  function duplicateDocumentById(id: string) {
+
+    const document = items.find(
+      (item) => item.id === id
+    );
+
+    if (!document) return;
+
+
+    const copy: KnowledgeItem = {
+      ...document,
+      id: crypto.randomUUID(),
+      title: `${document.title} Copy`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+
+    setItems((current) => [
+      ...current,
+      copy,
+    ]);
+
+    setSelectedId(copy.id);
+  }
+
+
+
+  function deleteDocumentById(id: string) {
+
+    const remaining = items.filter(
+      (item) => item.id !== id
+    );
+
+
+    setItems(remaining);
+
+
+    if (selectedId === id) {
+
+      setSelectedId(
+        remaining[0]?.id ?? ""
+      );
+
+    }
+  }
+
+
+
+  function updateDocument(
+    changes: Partial<KnowledgeItem>
+  ) {
+
+    if (!selected) return;
+
+
+    setItems((current) =>
+      current.map((item) =>
+        item.id === selected.id
+          ? {
+              ...item,
+              ...changes,
+              updatedAt: new Date().toISOString(),
+            }
+          : item
+      )
+    );
+  }
+
+
+
+  function updateLinks(id: string) {
+
+    if (!selected) return;
+
+
+    updateDocument({
+      linkedObjects:
+        selected.linkedObjects.includes(id)
+          ? selected.linkedObjects.filter(
+              (item) => item !== id
+            )
+          : [
+              ...selected.linkedObjects,
+              id,
+            ],
+    });
+  }
+
+
+
+  if (!selected) {
+
+    return (
+      <KnowledgeWorkspace
+
+        sidebar={
+          <KnowledgeSidebar
+            items={items}
+            selectedId=""
+            onSelect={setSelectedId}
+            onCreate={createDocument}
+            onRename={renameDocument}
+            onDuplicate={duplicateDocumentById}
+            onDelete={deleteDocumentById}
+          />
+        }
+
+        context={
+          <KnowledgeContext
+            objectIds={[]}
+          />
+        }
+
+      >
+
+        <div className="flex h-full items-center justify-center">
+
+          <div className="text-center">
+
+            <h2 className="text-xl font-semibold text-white">
+              No documents yet
+            </h2>
+
+            <p className="mt-2 text-sm text-white/40">
+              Create a document to start building your knowledge base.
+            </p>
+
             <button
-              key={item.id}
-              onClick={() => setSelected(item)}
-              className={`w-full rounded-lg px-3 py-2 text-left text-sm ${
-                selected.id === item.id
-                  ? "bg-white/10 text-white"
-                  : "text-white/60 hover:bg-white/5"
-              }`}
+              onClick={createDocument}
+              className="
+                mt-6
+                rounded-xl
+                bg-white
+                px-5
+                py-2.5
+                text-sm
+                font-medium
+                text-black
+              "
             >
-              {item.title}
+              Create Document
             </button>
-          ))}
-        </div>
-      </aside>
 
-      <main className="flex-1">
-        <Editor
-  item={selected}
-  onChange={(content) => {
-    setItems((current) =>
-      current.map((doc) =>
-        doc.id === selected.id
-          ? { ...doc, content }
-          : doc
-      )
+          </div>
+
+        </div>
+
+      </KnowledgeWorkspace>
     );
-  }}
-  onTitleChange={(title) => {
-    setItems((current) =>
-      current.map((doc) =>
-        doc.id === selected.id
-          ? { ...doc, title }
-          : doc
-      )
-    );
-  }}
-/>
-      </main>
-    </div>
+  }
+
+
+
+  return (
+
+    <KnowledgeWorkspace
+
+      sidebar={
+        <KnowledgeSidebar
+
+          items={items}
+
+          selectedId={selected.id}
+
+          onSelect={setSelectedId}
+
+          onCreate={createDocument}
+
+          onRename={renameDocument}
+
+          onDuplicate={duplicateDocumentById}
+
+          onDelete={deleteDocumentById}
+
+        />
+      }
+
+
+      context={
+        <KnowledgeContext
+          objectIds={selected.linkedObjects}
+        />
+      }
+
+    >
+
+      <div className="flex h-full flex-col">
+
+
+        <KnowledgeHeader
+
+          title={selected.title}
+
+          content={selected.content}
+
+          updatedAt={selected.updatedAt}
+
+          onTitleChange={(title) =>
+            updateDocument({
+              title,
+            })
+          }
+
+
+          menu={
+            <DocumentMenu
+              onRename={() =>
+                renameDocument(selected.id)
+              }
+              onDuplicate={() =>
+                duplicateDocumentById(selected.id)
+              }
+              onDelete={() =>
+                deleteDocumentById(selected.id)
+              }
+            />
+          }
+
+        />
+
+
+
+        <div className="flex-1 overflow-y-auto">
+
+          <div className="mx-auto w-full max-w-4xl px-12">
+
+            <div className="py-5">
+
+              <LinkObjectButton
+
+                linkedObjects={selected.linkedObjects}
+
+                onLink={updateLinks}
+
+              />
+
+            </div>
+
+
+            <Editor
+
+              item={selected}
+
+              onChange={(content) =>
+                updateDocument({
+                  content,
+                })
+              }
+
+            />
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </KnowledgeWorkspace>
+
   );
 }

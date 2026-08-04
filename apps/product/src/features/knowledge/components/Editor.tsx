@@ -1,66 +1,196 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { useEffect } from "react";
+
+import {
+  EditorContent,
+  useEditor,
+} from "@tiptap/react";
+
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
+import Link from "@tiptap/extension-link";
+
 import type { KnowledgeItem } from "../types";
+import { Toolbar } from "./Toolbar";
+
+
+interface EditorProps {
+  item: KnowledgeItem;
+  onChange: (content: string) => void;
+}
+
 
 export function Editor({
   item,
   onChange,
-  onTitleChange,
-}: {
-  item: KnowledgeItem;
-  onChange: (content: string) => void;
-  onTitleChange: (title: string) => void;
-}) {
-  const [title, setTitle] = useState(item.title);
+}: EditorProps) {
+
 
   const editor = useEditor({
+
     extensions: [
-      StarterKit,
-      Placeholder.configure({
-        placeholder: "Start writing...",
+
+      StarterKit.configure({
+
+        link: false,
+
+        heading: {
+          levels: [1, 2, 3],
+        },
+
+        codeBlock: {
+          HTMLAttributes: {
+            class:
+              "rounded-xl bg-black/40 border border-white/[0.08] px-4 py-3 text-sm font-mono text-white/80",
+          },
+        },
+
       }),
+
+
+      Placeholder.configure({
+
+        placeholder:
+          "Start writing your thoughts, plans, and knowledge..."
+
+      }),
+
+
+
+      Link.configure({
+
+        openOnClick: false,
+
+        HTMLAttributes: {
+          class:
+            "text-indigo-400 underline underline-offset-4 hover:text-indigo-300 transition",
+        },
+
+      }),
+
     ],
+
+
 
     content: item.content,
 
+
+
     immediatelyRender: false,
 
-    onUpdate({ editor }) {
-      onChange(editor.getHTML());
+
+
+    editorProps: {
+
+      attributes: {
+
+        class:
+          "min-h-[700px] w-full max-w-none outline-none text-[16px] leading-8 text-white/80",
+
+      },
+
     },
+
+
+
+    onUpdate({ editor }) {
+
+      onChange(
+        editor.getHTML()
+      );
+
+    },
+
   });
 
+
+
+
+
   useEffect(() => {
+
     if (!editor) return;
 
-    editor.commands.setContent(item.content || "");
-    setTitle(item.title);
-  }, [item.id]);
 
-  if (!editor) return null;
+    if (
+      editor.getHTML() !== item.content
+    ) {
+
+      editor.commands.setContent(
+
+        item.content || "",
+
+        {
+          emitUpdate: false,
+        }
+
+      );
+
+    }
+
+
+  }, [
+    editor,
+    item.id,
+  ]);
+
+
+
+
+
+  if (!editor) {
+
+    return null;
+
+  }
+
+
+
+
 
   return (
-    <div className="mx-auto max-w-4xl px-10 py-10">
-      <input
-        value={title}
-        onChange={(e) => {
-          setTitle(e.target.value);
-          onTitleChange(e.target.value);
-        }}
-        className="mb-8 w-full bg-transparent text-4xl font-semibold text-white outline-none placeholder:text-white/30"
-        placeholder="Untitled"
+
+    <div
+      className="
+        w-full
+        px-12
+        pb-24
+      "
+    >
+
+
+      <Toolbar
+        editor={editor}
       />
 
-      <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+
+
+      <div
+
+        className="
+          mt-6
+          w-full
+          min-h-[800px]
+          rounded-2xl
+          border
+          border-white/[0.06]
+          bg-white/[0.015]
+          px-16
+          py-12
+        "
+
+      >
+
         <EditorContent
           editor={editor}
-          className="min-h-[500px] text-base leading-7 text-white/80 outline-none"
         />
+
+
       </div>
+
+
     </div>
+
   );
 }

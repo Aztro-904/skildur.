@@ -6,4 +6,7 @@ export interface KnowledgeItem {
   type: KnowledgeType;
   content: string;
   linkedObjects: string[];
+
+  createdAt: string;
+  updatedAt: string;
 }

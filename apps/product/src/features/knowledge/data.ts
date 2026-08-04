@@ -7,5 +7,8 @@ export const knowledgeItems: KnowledgeItem[] = [
     type: "document",
     content: "Your connected knowledge workspace.",
     linkedObjects: ["project-1"],
+
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   },
 ];
