@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
+import { WorkspaceTeamPanel } from "@/features/collaboration/WorkspaceTeamPanel";
 
 const modules = [
   {
@@ -286,7 +287,7 @@ export function WorkspaceView() {
 
           gap-6
 
-          lg:grid-cols-2
+          lg:grid-cols-3
         "
       >
 
@@ -414,6 +415,7 @@ export function WorkspaceView() {
 
         </div>
 
+        <WorkspaceTeamPanel />
 
       </section>
 

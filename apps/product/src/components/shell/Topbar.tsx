@@ -15,16 +15,20 @@ export function Topbar() {
         z-40
 
         flex
+        flex-wrap
         h-20
         items-center
         justify-between
+        gap-4
 
         border-b
         border-[color:var(--border)]
 
         bg-[var(--surface)]
 
-        px-8
+        px-4
+        sm:px-6
+        lg:px-8
       "
     >
       {/* Left */}
@@ -61,37 +65,41 @@ export function Topbar() {
 
       {/* Right */}
 
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center gap-4">
 
         {/* Search */}
 
         <button
           className="
             flex
+            min-w-0
+            flex-1
+            max-w-[360px]
             h-11
-            w-[360px]
             items-center
             gap-3
 
             rounded-2xl
 
             border
-            border-[color:var(--border)]
+            border-[var(--accent-soft)]
 
-            bg-[var(--surface-elevated)]
+            bg-[var(--surface-strong)]
 
             px-4
 
             text-sm
 
-            text-[color:var(--text-muted)]
+            text-[color:var(--white-45)]
 
-            hover:bg-[var(--surface-hover)]
+            transition
+            hover:border-[var(--accent-muted)]
+            hover:bg-[var(--surface-elevated)]
           "
         >
           <Search size={17} />
 
-          <span className="flex-1 text-left">
+          <span className="flex-1 min-w-0 text-left">
             Search...
           </span>
 
@@ -104,7 +112,7 @@ export function Topbar() {
               rounded-lg
 
               border
-              border-[color:var(--border)]
+              border-[var(--accent-soft)]
 
               px-2
               py-1
@@ -131,13 +139,14 @@ export function Topbar() {
             rounded-2xl
 
             border
-            border-[color:var(--border)]
+            border-[var(--accent-soft)]
 
-            bg-[var(--surface-elevated)]
+            bg-[var(--surface-strong)]
 
-            text-[color:var(--text-secondary)]
+            text-[color:var(--accent)]
 
-            hover:bg-[var(--surface-hover)]
+            transition
+            hover:bg-[var(--surface-elevated)]
             hover:text-[color:var(--foreground)]
           "
         >
@@ -155,14 +164,14 @@ export function Topbar() {
             rounded-2xl
 
             border
-            border-[color:var(--border)]
+            border-[var(--accent-soft)]
 
-            bg-[var(--surface-elevated)]
+            bg-[var(--surface-strong)]
 
             px-3
             py-2.5
 
-            hover:bg-[var(--surface-hover)]
+            hover:bg-[var(--surface-elevated)]
           "
         >
           <div
@@ -196,7 +205,7 @@ export function Topbar() {
                 text-[color:var(--foreground)]
               "
             >
-              Azlan
+              Alex
             </p>
 
             <p

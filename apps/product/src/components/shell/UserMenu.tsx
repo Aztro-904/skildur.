@@ -78,7 +78,7 @@ export function UserMenu() {
               text-[color:var(--foreground)]
             "
           >
-            Azlan
+            Alex
           </p>
 
 

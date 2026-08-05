@@ -13,6 +13,8 @@ import {
   Workflow,
   Settings,
   Search,
+  Users,
+  Bell,
 } from "lucide-react";
 
 
@@ -44,6 +46,22 @@ const groups = [
         name: "Objects",
         href: "/objects",
         icon: Box,
+      },
+    ],
+  },
+
+  {
+    label: "Collaboration",
+    items: [
+      {
+        name: "Team",
+        href: "/team",
+        icon: Users,
+      },
+      {
+        name: "Activity",
+        href: "/activity",
+        icon: Bell,
       },
     ],
   },
@@ -85,13 +103,10 @@ export function Sidebar() {
   return (
     <aside
       className="
-        fixed
-        left-0
-        top-0
-
+        relative
         flex
-        h-screen
-        w-[264px]
+        min-h-0
+        w-full
         flex-col
 
         border-r

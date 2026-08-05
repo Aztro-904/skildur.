@@ -1,0 +1,11 @@
+Customer,Country,Product,Category,Revenue,Orders,Status,Date
+Ali Khan,Pakistan,MacBook Pro,Electronics,2400,2,Completed,2026-01-15
+Sarah Ahmed,USA,iPhone 17,Electronics,1800,3,Completed,2026-01-20
+John Smith,UK,Keyboard,Accessories,250,5,Pending,2026-02-01
+Emma Wilson,Canada,Monitor,Electronics,900,1,Completed,2026-02-10
+Hamza Ali,Pakistan,Mouse,Accessories,120,4,Pending,2026-02-15
+David Lee,Germany,Laptop Stand,Accessories,80,6,Completed,2026-03-01
+Ayesha Noor,UAE,iPad Pro,Electronics,1400,2,Completed,2026-03-05
+Michael Brown,USA,Webcam,Accessories,300,3,Cancelled,2026-03-10
+Fatima Khan,Pakistan,AirPods,Electronics,500,8,Completed,2026-03-15
+James Wilson,UK,Keyboard,Accessories,200,4,Pending,2026-03-20

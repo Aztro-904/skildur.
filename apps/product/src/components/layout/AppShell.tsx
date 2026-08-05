@@ -68,6 +68,7 @@ export function AppShell({
         className="
           flex
           min-w-0
+          overflow-x-hidden
           flex-1
           flex-col
 
@@ -80,6 +81,8 @@ export function AppShell({
           className="
             relative
             flex-1
+            min-w-0
+            overflow-x-hidden
             overflow-y-auto
           "
         >
@@ -126,7 +129,9 @@ export function AppShell({
 
               min-h-full
 
-              px-8
+              px-4
+              sm:px-6
+              lg:px-8
               py-8
             "
           >
