@@ -87,15 +87,15 @@ export function LinkObjectButton({
           gap-2
           rounded-xl
           border
-          border-white/[0.08]
-          bg-white/[0.03]
+          border-[var(--white-08)]
+          bg-[var(--white-03)]
           px-3
           py-2
           text-sm
-          text-white/70
+          text-[color:var(--white-70)]
           transition
-          hover:bg-white/[0.06]
-          hover:text-white
+          hover:bg-[var(--white-06)]
+          hover:text-[color:var(--foreground)]
         "
 
       >
@@ -124,8 +124,8 @@ export function LinkObjectButton({
             overflow-hidden
             rounded-2xl
             border
-            border-white/[0.1]
-            bg-[#101012]
+            border-[var(--white)]/[0.1]
+            bg-[var(--surface-panel)]
             shadow-2xl
           "
 
@@ -142,7 +142,7 @@ export function LinkObjectButton({
               items-center
               gap-3
               border-b
-              border-white/[0.08]
+              border-[var(--white-08)]
               px-3
               py-3
             "
@@ -151,7 +151,7 @@ export function LinkObjectButton({
 
             <Search
               size={15}
-              className="text-white/35"
+              className="text-[color:var(--white-35)]"
             />
 
 
@@ -172,9 +172,9 @@ export function LinkObjectButton({
                 flex-1
                 bg-transparent
                 text-sm
-                text-white
+                text-[color:var(--foreground)]
                 outline-none
-                placeholder:text-white/30
+                placeholder:text-[color:var(--white-30)]
               "
 
             />
@@ -189,8 +189,8 @@ export function LinkObjectButton({
               }}
 
               className="
-                text-white/30
-                hover:text-white
+                text-[color:var(--white-30)]
+                hover:text-[color:var(--foreground)]
               "
 
             >
@@ -228,7 +228,7 @@ export function LinkObjectButton({
                   py-5
                   text-center
                   text-sm
-                  text-white/35
+                  text-[color:var(--white-35)]
                 "
               >
                 No objects found
@@ -267,7 +267,7 @@ export function LinkObjectButton({
                       py-3
                       text-left
                       transition
-                      hover:bg-white/[0.05]
+                      hover:bg-[var(--white-05)]
                     "
 
                   >
@@ -279,7 +279,7 @@ export function LinkObjectButton({
                         className="
                           text-sm
                           font-medium
-                          text-white
+                          text-[color:var(--foreground)]
                         "
                       >
                         {object.title}
@@ -290,7 +290,7 @@ export function LinkObjectButton({
                         className="
                           mt-1
                           text-xs
-                          text-white/35
+                          text-[color:var(--white-35)]
                         "
                       >
                         {object.type}
@@ -306,7 +306,7 @@ export function LinkObjectButton({
 
                       <Check
                         size={15}
-                        className="text-white/60"
+                        className="text-[color:var(--white-60)]"
                       />
 
                     )}

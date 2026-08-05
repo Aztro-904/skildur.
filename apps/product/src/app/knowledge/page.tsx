@@ -19,54 +19,98 @@ const STORAGE_KEY = "skildur-knowledge";
 
 export default function KnowledgePage() {
 
-  const [items, setItems] = useState<KnowledgeItem[]>(initialItems);
+  const [items, setItems] =
+    useState<KnowledgeItem[]>(initialItems);
 
-  const [selectedId, setSelectedId] = useState(
-    initialItems[0]?.id ?? ""
-  );
+
+  const [selectedId, setSelectedId] =
+    useState(
+      initialItems[0]?.id ?? ""
+    );
+
 
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
 
-    if (saved) {
-      const parsed = JSON.parse(saved);
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
 
-      setItems(parsed);
-      setSelectedId(parsed[0]?.id ?? "");
-    }
+
+    if (!saved) return;
+
+
+    const parsed =
+      JSON.parse(saved);
+
+
+    setItems(parsed);
+
+
+    setSelectedId(
+      parsed[0]?.id ?? ""
+    );
+
   }, []);
 
 
+
+
   useEffect(() => {
+
     localStorage.setItem(
       STORAGE_KEY,
       JSON.stringify(items)
     );
+
   }, [items]);
 
 
 
-  const selected = useMemo(
-    () =>
-      items.find(
-        (item) => item.id === selectedId
-      ),
-    [items, selectedId]
-  );
+
+
+  const selected =
+    useMemo(
+      () =>
+        items.find(
+          (item) =>
+            item.id === selectedId
+        ),
+
+      [
+        items,
+        selectedId,
+      ]
+    );
+
+
 
 
 
   function createDocument() {
 
     const document: KnowledgeItem = {
-      id: crypto.randomUUID(),
-      title: "Untitled",
-      type: "document",
-      content: "",
-      linkedObjects: [],
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+
+      id:
+        crypto.randomUUID(),
+
+      title:
+        "Untitled",
+
+      type:
+        "document",
+
+      content:
+        "",
+
+      linkedObjects:
+        [],
+
+      createdAt:
+        new Date().toISOString(),
+
+      updatedAt:
+        new Date().toISOString(),
+
     };
 
 
@@ -75,24 +119,36 @@ export default function KnowledgePage() {
       document,
     ]);
 
-    setSelectedId(document.id);
+
+    setSelectedId(
+      document.id
+    );
+
   }
 
 
 
-  function renameDocument(id: string) {
 
-    const document = items.find(
-      (item) => item.id === id
-    );
+
+  function renameDocument(
+    id: string
+  ) {
+
+    const document =
+      items.find(
+        (item) =>
+          item.id === id
+      );
+
 
     if (!document) return;
 
 
-    const title = prompt(
-      "Rename document",
-      document.title
-    );
+    const title =
+      prompt(
+        "Rename document",
+        document.title
+      );
 
 
     if (!title?.trim()) return;
@@ -103,31 +159,54 @@ export default function KnowledgePage() {
         item.id === id
           ? {
               ...item,
-              title: title.trim(),
-              updatedAt: new Date().toISOString(),
+
+              title:
+                title.trim(),
+
+              updatedAt:
+                new Date().toISOString(),
             }
-          : item
+          :
+            item
       )
     );
+
   }
 
 
 
-  function duplicateDocumentById(id: string) {
 
-    const document = items.find(
-      (item) => item.id === id
-    );
+
+  function duplicateDocument(
+    id: string
+  ) {
+
+    const document =
+      items.find(
+        (item) =>
+          item.id === id
+      );
+
 
     if (!document) return;
 
 
     const copy: KnowledgeItem = {
+
       ...document,
-      id: crypto.randomUUID(),
-      title: `${document.title} Copy`,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+
+      id:
+        crypto.randomUUID(),
+
+      title:
+        `${document.title} Copy`,
+
+      createdAt:
+        new Date().toISOString(),
+
+      updatedAt:
+        new Date().toISOString(),
+
     };
 
 
@@ -136,19 +215,31 @@ export default function KnowledgePage() {
       copy,
     ]);
 
-    setSelectedId(copy.id);
+
+    setSelectedId(
+      copy.id
+    );
+
   }
 
 
 
-  function deleteDocumentById(id: string) {
 
-    const remaining = items.filter(
-      (item) => item.id !== id
+
+  function deleteDocument(
+    id: string
+  ) {
+
+    const remaining =
+      items.filter(
+        (item) =>
+          item.id !== id
+      );
+
+
+    setItems(
+      remaining
     );
-
-
-    setItems(remaining);
 
 
     if (selectedId === id) {
@@ -158,7 +249,10 @@ export default function KnowledgePage() {
       );
 
     }
+
   }
+
+
 
 
 
@@ -174,96 +268,135 @@ export default function KnowledgePage() {
         item.id === selected.id
           ? {
               ...item,
+
               ...changes,
-              updatedAt: new Date().toISOString(),
+
+              updatedAt:
+                new Date().toISOString(),
             }
-          : item
+          :
+            item
       )
     );
+
   }
 
 
 
-  function updateLinks(id: string) {
+
+
+  function updateLinks(
+    id: string
+  ) {
 
     if (!selected) return;
 
 
     updateDocument({
+
       linkedObjects:
+
         selected.linkedObjects.includes(id)
-          ? selected.linkedObjects.filter(
-              (item) => item !== id
+
+          ?
+
+            selected.linkedObjects.filter(
+              (item) =>
+                item !== id
             )
-          : [
+
+          :
+
+            [
               ...selected.linkedObjects,
               id,
             ],
+
     });
+
   }
+
+
+
+
 
 
 
   if (!selected) {
 
     return (
+
       <KnowledgeWorkspace
 
         sidebar={
+
           <KnowledgeSidebar
+
             items={items}
+
             selectedId=""
+
             onSelect={setSelectedId}
+
             onCreate={createDocument}
-            onRename={renameDocument}
-            onDuplicate={duplicateDocumentById}
-            onDelete={deleteDocumentById}
+
           />
+
         }
 
+
         context={
+
           <KnowledgeContext
+
             objectIds={[]}
+
           />
+
         }
 
       >
 
-        <div className="flex h-full items-center justify-center">
+        <div
+          className="
+            flex
+            h-full
+            items-center
+            justify-center
+          "
+        >
 
-          <div className="text-center">
+          <button
+            onClick={createDocument}
 
-            <h2 className="text-xl font-semibold text-white">
-              No documents yet
-            </h2>
+            className="
+              rounded-xl
+              bg-[var(--white)]
+              px-5
+              py-2.5
+              text-sm
+              font-medium
+              text-[color:var(--black)]
+            "
+          >
 
-            <p className="mt-2 text-sm text-white/40">
-              Create a document to start building your knowledge base.
-            </p>
+            Create Document
 
-            <button
-              onClick={createDocument}
-              className="
-                mt-6
-                rounded-xl
-                bg-white
-                px-5
-                py-2.5
-                text-sm
-                font-medium
-                text-black
-              "
-            >
-              Create Document
-            </button>
+          </button>
 
-          </div>
 
         </div>
 
+
       </KnowledgeWorkspace>
+
     );
+
   }
+
+
+
+
 
 
 
@@ -271,7 +404,9 @@ export default function KnowledgePage() {
 
     <KnowledgeWorkspace
 
+
       sidebar={
+
         <KnowledgeSidebar
 
           items={items}
@@ -282,34 +417,45 @@ export default function KnowledgePage() {
 
           onCreate={createDocument}
 
-          onRename={renameDocument}
-
-          onDuplicate={duplicateDocumentById}
-
-          onDelete={deleteDocumentById}
-
         />
+
       }
+
 
 
       context={
+
         <KnowledgeContext
-          objectIds={selected.linkedObjects}
+
+          objectIds={
+            selected.linkedObjects
+          }
+
         />
+
       }
+
 
     >
 
-      <div className="flex h-full flex-col">
+      <div
+        className="
+          flex
+          h-full
+          flex-col
+        "
+      >
 
 
         <KnowledgeHeader
 
-          title={selected.title}
+          title={
+            selected.title
+          }
 
-          content={selected.content}
-
-          updatedAt={selected.updatedAt}
+          updatedAt={
+            selected.updatedAt
+          }
 
           onTitleChange={(title) =>
             updateDocument({
@@ -319,38 +465,70 @@ export default function KnowledgePage() {
 
 
           menu={
+
             <DocumentMenu
+
               onRename={() =>
-                renameDocument(selected.id)
+                renameDocument(
+                  selected.id
+                )
               }
+
               onDuplicate={() =>
-                duplicateDocumentById(selected.id)
+                duplicateDocument(
+                  selected.id
+                )
               }
+
               onDelete={() =>
-                deleteDocumentById(selected.id)
+                deleteDocument(
+                  selected.id
+                )
               }
+
             />
+
           }
 
         />
 
 
 
-        <div className="flex-1 overflow-y-auto">
+        <div
+          className="
+            flex-1
+            overflow-y-auto
+          "
+        >
 
-          <div className="mx-auto w-full max-w-4xl px-12">
+          <div
+            className="
+              mx-auto
+              max-w-4xl
+              px-12
+            "
+          >
 
-            <div className="py-5">
+            <div
+              className="
+                py-5
+              "
+            >
 
               <LinkObjectButton
 
-                linkedObjects={selected.linkedObjects}
+                linkedObjects={
+                  selected.linkedObjects
+                }
 
-                onLink={updateLinks}
+                onLink={
+                  updateLinks
+                }
 
               />
 
             </div>
+
 
 
             <Editor
@@ -365,7 +543,9 @@ export default function KnowledgePage() {
 
             />
 
+
           </div>
+
 
         </div>
 
@@ -376,4 +556,5 @@ export default function KnowledgePage() {
     </KnowledgeWorkspace>
 
   );
+
 }

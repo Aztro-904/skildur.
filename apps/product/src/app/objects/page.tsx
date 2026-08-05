@@ -22,7 +22,7 @@ export default async function ObjectsPage({
           Objects
         </h1>
 
-        <p className="mt-2 text-sm text-white/50">
+        <p className="mt-2 text-sm text-[color:var(--white-50)]">
           Connected workspace foundation.
         </p>
       </div>

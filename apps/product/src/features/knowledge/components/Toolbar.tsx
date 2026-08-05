@@ -86,19 +86,21 @@ export function Toolbar({
   return (
     <div
       className="
-        sticky
-        top-0
-        z-10
-        mb-6
         flex
-        w-fit
         items-center
         gap-1
+
         rounded-xl
+
         border
-        border-white/[0.08]
-        bg-[#111113]/80
+        border-[var(--white-08)]
+
+        bg-[var(--surface-deep)]/90
+
         p-1.5
+
+        shadow-[0_10px_40px_rgba(0,0,0,.25)]
+
         backdrop-blur-xl
       "
     >
@@ -113,28 +115,39 @@ export function Toolbar({
 
           <button
             key={label}
+
             type="button"
+
             title={label}
+
             onClick={action}
 
             className={`
               flex
               h-8
               w-8
+
               items-center
               justify-center
+
               rounded-lg
+
               transition
 
               ${
                 active
-                  ? "bg-white/15 text-white"
-                  : "text-white/45 hover:bg-white/10 hover:text-white"
+                ?
+                "bg-[var(--accent-muted)] text-[color:var(--accent-text)]"
+                :
+                "text-[color:var(--white-45)] hover:bg-[var(--white-06)] hover:text-[color:var(--foreground)]"
               }
             `}
           >
 
-            <Icon size={15}/>
+            <Icon
+              size={15}
+              strokeWidth={1.8}
+            />
 
           </button>
 

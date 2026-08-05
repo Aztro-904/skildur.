@@ -36,8 +36,8 @@ export function Navigation() {
             href={href}
             className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
               active
-                ? "bg-white/10 text-white"
-                : "text-white/60 hover:bg-white/5 hover:text-white"
+                ? "bg-[var(--white-10)] text-[color:var(--foreground)]"
+                : "text-[color:var(--white-60)] hover:bg-[var(--white-05)] hover:text-[color:var(--foreground)]"
             }`}
           >
             <Icon size={18} />

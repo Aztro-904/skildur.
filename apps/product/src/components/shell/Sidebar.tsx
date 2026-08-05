@@ -2,146 +2,421 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import {
-  House,
-  Boxes,
-  BookOpen,
+  Home,
+  FolderKanban,
   Database,
-  Bot,
-  Zap,
+  BookOpen,
+  Box,
+  Brain,
+  Workflow,
   Settings,
+  Search,
 } from "lucide-react";
 
-const navigation = [
+
+const groups = [
   {
-    label: "Home",
-    href: "/",
-    icon: House,
+    label: "Core",
+    items: [
+      {
+        name: "Overview",
+        href: "/",
+        icon: Home,
+      },
+      {
+        name: "Workspaces",
+        href: "/workspaces",
+        icon: FolderKanban,
+      },
+      {
+        name: "Data",
+        href: "/data",
+        icon: Database,
+      },
+      {
+        name: "Knowledge",
+        href: "/knowledge",
+        icon: BookOpen,
+      },
+      {
+        name: "Objects",
+        href: "/objects",
+        icon: Box,
+      },
+    ],
   },
+
   {
-    label: "Objects",
-    href: "/objects",
-    icon: Boxes,
+    label: "Intelligence",
+    items: [
+      {
+        name: "Assistant",
+        href: "/assistant",
+        icon: Brain,
+      },
+      {
+        name: "Automations",
+        href: "/automations",
+        icon: Workflow,
+      },
+    ],
   },
+
   {
-    label: "Knowledge",
-    href: "/knowledge",
-    icon: BookOpen,
-  },
-  {
-    label: "Data",
-    href: "/data",
-    icon: Database,
-  },
-  {
-    label: "Automation",
-    href: "/automation",
-    icon: Zap,
-  },
-  {
-    label: "AI",
-    href: "/ai",
-    icon: Bot,
+    label: "System",
+    items: [
+      {
+        name: "Settings",
+        href: "/settings",
+        icon: Settings,
+      },
+    ],
   },
 ];
 
+
 export function Sidebar() {
+
   const pathname = usePathname();
 
+
   return (
-    <aside className="flex w-72 flex-col border-r border-white/8 bg-[#09090B]">
-      {/* Logo */}
+    <aside
+      className="
+        fixed
+        left-0
+        top-0
 
-      <div className="border-b border-white/8 px-6 py-6">
-        <h1 className="text-xl font-semibold tracking-tight text-white">
-          Skildur
-        </h1>
+        flex
+        h-screen
+        w-[264px]
+        flex-col
 
-        <p className="mt-1 text-sm text-white/35">
-          Intelligent Workspace
-        </p>
+        border-r
+        border-[var(--white-06)]
+
+        bg-[var(--surface-backdrop)]
+
+        backdrop-blur-2xl
+
+        px-4
+        py-5
+      "
+    >
+
+      {/* Brand */}
+
+      <div
+        className="
+          flex
+          items-center
+          gap-3
+
+          px-2
+          pb-6
+        "
+      >
+
+        <div
+          className="
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+
+            rounded-xl
+
+            border
+            border-[var(--accent-muted)]
+
+            bg-[var(--accent-soft)]
+
+            text-sm
+            font-semibold
+
+            text-[color:var(--accent-text)]
+          "
+        >
+          S
+        </div>
+
+
+        <span
+          className="
+            text-[17px]
+            font-semibold
+            tracking-tight
+            text-[color:var(--foreground)]
+          "
+        >
+          Skildur.
+        </span>
+
       </div>
+
+
+
+      {/* Search */}
+
+      <button
+        className="
+          mb-6
+
+          flex
+          items-center
+          gap-3
+
+          rounded-xl
+
+          border
+          border-[var(--white-08)]
+
+          bg-[var(--white-03)]
+
+          px-3
+          py-2.5
+
+          text-sm
+
+          text-[color:var(--white-40)]
+
+          transition
+
+          hover:bg-[var(--white-06)]
+          hover:text-[color:var(--white-80)]
+        "
+      >
+
+        <Search
+          size={15}
+          strokeWidth={1.8}
+        />
+
+        Search
+
+
+        <span
+          className="
+            ml-auto
+
+            rounded-md
+
+            border
+            border-[var(--white-08)]
+
+            bg-[var(--white-02)]
+
+            px-1.5
+            py-0.5
+
+            text-[10px]
+
+            text-[color:var(--white-30)]
+          "
+        >
+          ⌘K
+        </span>
+
+      </button>
+
+
+
 
       {/* Navigation */}
 
-      <nav className="flex-1 px-3 py-5">
-        <p className="mb-3 px-3 text-xs uppercase tracking-[0.16em] text-white/25">
-          Workspace
-        </p>
+      <nav
+        className="
+          flex-1
+          space-y-7
+        "
+      >
 
-        <div className="space-y-1">
-          {navigation.map((item) => {
-            const Icon = item.icon;
+        {groups.map((group) => (
 
-            const active =
-              pathname === item.href;
+          <div
+            key={group.label}
+          >
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`
-                  flex
-                  items-center
-                  gap-3
-                  rounded-xl
-                  px-3
-                  py-2.5
-                  transition
+            <p
+              className="
+                mb-2
 
-                  ${
-                    active
-                      ? "bg-white/8 text-white"
-                      : "text-white/45 hover:bg-white/[0.04] hover:text-white"
-                  }
-                `}
-              >
-                <Icon size={18} />
+                px-2
 
-                <span className="text-sm font-medium">
-                  {item.label}
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+                text-[10px]
+
+                uppercase
+
+                tracking-[0.18em]
+
+                text-[color:var(--white-25)]
+              "
+            >
+              {group.label}
+            </p>
+
+
+
+            <div
+              className="
+                space-y-1
+              "
+            >
+
+              {group.items.map((item) => {
+
+                const Icon =
+                  item.icon;
+
+
+                const active =
+                  pathname === item.href;
+
+
+
+                return (
+                  <Link
+                    key={item.href}
+
+                    href={item.href}
+
+                    className={`
+                      relative
+
+                      flex
+                      items-center
+                      gap-3
+
+                      rounded-xl
+
+                      px-3
+                      py-2.5
+
+                      text-sm
+
+                      transition-all
+
+                      ${
+                        active
+                          ?
+                            "bg-[var(--white-08)] text-[color:var(--foreground)]"
+                          :
+                            "text-[color:var(--white-45)] hover:bg-[var(--white-04)] hover:text-[color:var(--foreground)]"
+                      }
+                    `}
+                  >
+
+                    {active && (
+
+                      <span
+                        className="
+                          absolute
+                          left-0
+
+                          h-5
+                          w-[2px]
+
+                          rounded-full
+
+                          bg-[var(--accent-hover)]
+                        "
+                      />
+
+                    )}
+
+
+
+                    <Icon
+
+                      size={16}
+
+                      strokeWidth={1.8}
+
+                      className={
+                        active
+                          ?
+                            "text-[color:var(--accent-text)]"
+                          :
+                            "text-[color:var(--white-35)]"
+                      }
+
+                    />
+
+
+                    {item.name}
+
+
+                  </Link>
+                );
+
+              })}
+
+            </div>
+
+
+          </div>
+
+        ))}
+
       </nav>
 
-      {/* Footer */}
 
-      <div className="border-t border-white/8 p-3">
-        <Link
-          href="/settings"
+
+
+      {/* AI Status */}
+
+      <div
+        className="
+          rounded-xl
+
+          border
+          border-[var(--white-06)]
+
+          bg-[var(--white-02)]
+
+          p-3
+        "
+      >
+
+        <div
           className="
             flex
             items-center
-            gap-3
-            rounded-xl
-            px-3
-            py-2.5
-            text-white/45
-            transition
-            hover:bg-white/[0.04]
-            hover:text-white
+            gap-2
           "
         >
-          <Settings size={18} />
 
-          <span className="text-sm font-medium">
-            Settings
+          <span
+            className="
+              h-2
+              w-2
+
+              rounded-full
+
+              bg-[var(--accent-hover)]
+
+              shadow-[0_0_12px_rgba(99,102,241,0.8)]
+            "
+          />
+
+
+          <span
+            className="
+              text-xs
+              text-[color:var(--white-50)]
+            "
+          >
+            AI Ready
           </span>
-        </Link>
 
-        <div className="mt-5 rounded-xl border border-white/8 bg-white/[0.03] p-3">
-          <p className="text-sm font-medium text-white">
-            My Workspace
-          </p>
-
-          <p className="mt-1 text-xs text-white/35">
-            Personal
-          </p>
         </div>
+
       </div>
+
+
     </aside>
   );
 }

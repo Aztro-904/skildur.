@@ -31,7 +31,7 @@ function close() {
 
   return (
   <div
-    className="fixed inset-0 z-50 flex justify-center pt-20 bg-black/40 backdrop-blur-sm"
+    className="fixed inset-0 z-50 flex justify-center pt-20 bg-[var(--black-40)] backdrop-blur-sm"
     onClick={() => setOpen(false)}
   >
     <div onClick={(e) => e.stopPropagation()}>

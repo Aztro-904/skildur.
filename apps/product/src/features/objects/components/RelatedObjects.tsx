@@ -16,7 +16,7 @@ export function RelatedObjects({
 
   return (
     <section className="space-y-3">
-      <h2 className="text-sm font-medium text-white/80">
+      <h2 className="text-sm font-medium text-[color:var(--white-80)]">
         Related Objects
       </h2>
 

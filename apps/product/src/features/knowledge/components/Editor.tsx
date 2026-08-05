@@ -42,7 +42,7 @@ export function Editor({
         codeBlock: {
           HTMLAttributes: {
             class:
-              "rounded-xl bg-black/40 border border-white/[0.08] px-4 py-3 text-sm font-mono text-white/80",
+              "rounded-xl bg-[var(--black-40)] border border-[var(--white-08)] px-4 py-3 text-sm font-mono text-[color:var(--white-80)]",
           },
         },
 
@@ -64,7 +64,7 @@ export function Editor({
 
         HTMLAttributes: {
           class:
-            "text-indigo-400 underline underline-offset-4 hover:text-indigo-300 transition",
+            "text-[color:var(--accent-hover)] underline underline-offset-4 hover:text-[color:var(--accent-text)] transition",
         },
 
       }),
@@ -86,7 +86,7 @@ export function Editor({
       attributes: {
 
         class:
-          "min-h-[700px] w-full max-w-none outline-none text-[16px] leading-8 text-white/80",
+          "min-h-[700px] w-full max-w-none outline-none text-[16px] leading-8 text-[color:var(--white-80)]",
 
       },
 
@@ -174,8 +174,8 @@ export function Editor({
           min-h-[800px]
           rounded-2xl
           border
-          border-white/[0.06]
-          bg-white/[0.015]
+          border-[var(--white-06)]
+          bg-[var(--white-015)]
           px-16
           py-12
         "

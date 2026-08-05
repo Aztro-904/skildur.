@@ -9,7 +9,7 @@ export function CreateWork() {
         Create your first connected workspace item.
       </p>
 
-      <button className="mt-6 rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-white">
+      <button className="mt-6 rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[color:var(--foreground)]">
         Create work
       </button>
     </div>

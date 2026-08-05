@@ -4,13 +4,8 @@ import {
   FileText,
   Plus,
   Search,
-  MoreHorizontal,
-  Trash2,
-  Copy,
-  Pencil,
 } from "lucide-react";
 
-import { useMemo, useState } from "react";
 import type { KnowledgeItem } from "../types";
 
 
@@ -19,9 +14,6 @@ interface KnowledgeSidebarProps {
   selectedId: string;
   onSelect: (id: string) => void;
   onCreate: () => void;
-  onRename: (id: string) => void;
-  onDuplicate: (id: string) => void;
-  onDelete: (id: string) => void;
 }
 
 
@@ -30,124 +22,132 @@ export function KnowledgeSidebar({
   selectedId,
   onSelect,
   onCreate,
-  onRename,
-  onDuplicate,
-  onDelete,
 }: KnowledgeSidebarProps) {
-
-  const [query, setQuery] = useState("");
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-
-
-  const filteredItems = useMemo(() => {
-
-    if (!query.trim()) {
-      return items;
-    }
-
-    return items.filter((item) =>
-      item.title
-        .toLowerCase()
-        .includes(query.toLowerCase())
-    );
-
-  }, [items, query]);
-
-
-
-  function closeMenu() {
-    setOpenMenu(null);
-  }
-
 
 
   return (
-    <div className="flex h-full flex-col">
+    <aside
+      className="
+        flex
+
+        h-full
+
+        flex-col
+
+        p-4
+      "
+    >
 
 
       {/* Header */}
 
-      <div className="border-b border-white/[0.08] px-5 py-5">
+      <div
+        className="
+          flex
 
-        <h1 className="text-lg font-semibold tracking-tight text-white">
+          items-center
+
+          justify-between
+
+          px-1
+
+          pb-4
+        "
+      >
+
+        <p
+          className="
+            text-xs
+
+            font-medium
+
+            uppercase
+
+            tracking-[0.16em]
+
+            text-[color:var(--white-30)]
+          "
+        >
           Knowledge
-        </h1>
-
-        <p className="mt-1 text-sm text-white/40">
-          Your connected information
         </p>
 
 
         <button
           onClick={onCreate}
+
           className="
-            mt-5
             flex
-            w-full
+
+            h-7
+
+            w-7
+
             items-center
+
             justify-center
-            gap-2
-            rounded-xl
-            bg-white
-            px-4
-            py-2.5
-            text-sm
-            font-medium
-            text-black
+
+            rounded-lg
+
+            bg-[var(--accent-soft)]
+
+            text-[color:var(--accent-text)]
+
             transition
-            hover:bg-white/90
+
+            hover:bg-[var(--accent-muted)]
           "
         >
-          <Plus size={16} />
-          New Document
+
+          <Plus size={15}/>
+
         </button>
 
+
       </div>
+
+
 
 
 
       {/* Search */}
 
-      <div className="border-b border-white/[0.08] p-4">
+      <button
+        className="
+          flex
 
-        <div
-          className="
-            flex
-            items-center
-            gap-3
-            rounded-xl
-            border
-            border-white/[0.08]
-            bg-white/[0.03]
-            px-3
-            py-2.5
-          "
-        >
+          items-center
 
-          <Search
-            size={15}
-            className="text-white/35"
-          />
+          gap-3
 
-          <input
-            value={query}
-            onChange={(e) =>
-              setQuery(e.target.value)
-            }
-            placeholder="Search knowledge..."
-            className="
-              w-full
-              bg-transparent
-              text-sm
-              text-white
-              outline-none
-              placeholder:text-white/35
-            "
-          />
+          rounded-xl
 
-        </div>
+          border
 
-      </div>
+          border-[var(--white-08)]
+
+          bg-[var(--white-03)]
+
+          px-3
+
+          py-2.5
+
+          text-sm
+
+          text-[color:var(--white-40)]
+
+          transition
+
+          hover:bg-[var(--white-06)]
+        "
+      >
+
+        <Search
+          size={15}
+        />
+
+        Search documents
+
+      </button>
 
 
 
@@ -155,45 +155,43 @@ export function KnowledgeSidebar({
 
       {/* Documents */}
 
-      <div className="flex-1 overflow-y-auto px-3 py-4">
+      <div
+        className="
+          mt-6
+
+          flex-1
+
+          overflow-y-auto
+        "
+      >
+
+        <p
+          className="
+            mb-2
+
+            px-2
+
+            text-[10px]
+
+            uppercase
+
+            tracking-[0.18em]
+
+            text-[color:var(--white-25)]
+          "
+        >
+          Documents
+        </p>
+
 
 
         <div
           className="
-            mb-3
-            flex
-            items-center
-            justify-between
-            px-2
+            space-y-1
           "
         >
 
-          <p
-            className="
-              text-xs
-              font-medium
-              uppercase
-              tracking-[0.16em]
-              text-white/30
-            "
-          >
-            Documents
-          </p>
-
-
-          <span className="text-xs text-white/25">
-            {items.length}
-          </span>
-
-        </div>
-
-
-
-
-        <div className="space-y-1">
-
-
-          {filteredItems.map((item) => {
+          {items.map((item) => {
 
             const active =
               item.id === selectedId;
@@ -201,221 +199,74 @@ export function KnowledgeSidebar({
 
             return (
 
-              <div
+              <button
+
                 key={item.id}
-                className="group relative"
+
+                onClick={() =>
+                  onSelect(item.id)
+                }
+
+                className={`
+                  group
+
+                  flex
+
+                  w-full
+
+                  items-center
+
+                  gap-3
+
+                  rounded-xl
+
+                  px-3
+
+                  py-2.5
+
+                  text-left
+
+                  text-sm
+
+                  transition
+
+                  ${
+                    active
+                    ?
+                      "bg-[var(--white-08)] text-[color:var(--foreground)]"
+                    :
+                      "text-[color:var(--white-50)] hover:bg-[var(--white-04)] hover:text-[color:var(--foreground)]"
+                  }
+                `}
               >
 
-                <button
-                  onClick={() => {
-                    onSelect(item.id);
-                    closeMenu();
-                  }}
+                <FileText
+                  size={15}
 
-                  className={`
-                    flex
-                    w-full
-                    items-center
-                    gap-3
-                    rounded-xl
-                    px-3
-                    py-2.5
-                    text-left
-                    transition
+                  className={
+                    active
+                    ?
+                      "text-[color:var(--accent-text)]"
+                    :
+                      "text-[color:var(--white-30)]"
+                  }
+                />
 
-                    ${
-                      active
-                        ? "bg-white/[0.08] text-white"
-                        : "text-white/55 hover:bg-white/[0.04] hover:text-white"
-                    }
-                  `}
+
+                <span
+                  className="
+                    truncate
+                  "
                 >
-
-                  <FileText
-                    size={16}
-                    className={
-                      active
-                        ? "text-white"
-                        : "text-white/40"
-                    }
-                  />
+                  {item.title}
+                </span>
 
 
-                  <span
-                    className="
-                      flex-1
-                      truncate
-                      text-sm
-                      font-medium
-                    "
-                  >
-                    {item.title}
-                  </span>
-
-
-
-                  <span
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setOpenMenu(
-                        openMenu === item.id
-                          ? null
-                          : item.id
-                      );
-                    }}
-                    className="
-                      flex
-                      h-7
-                      w-7
-                      items-center
-                      justify-center
-                      rounded-lg
-                      opacity-0
-                      transition
-                      hover:bg-white/10
-                      group-hover:opacity-100
-                    "
-                  >
-
-                    <MoreHorizontal size={15} />
-
-                  </span>
-
-
-                </button>
-
-
-
-
-
-                {openMenu === item.id && (
-
-                  <div
-                    className="
-                      absolute
-                      right-2
-                      top-11
-                      z-50
-                      w-40
-                      rounded-xl
-                      border
-                      border-white/10
-                      bg-[#111113]
-                      p-1
-                      shadow-xl
-                    "
-                  >
-
-
-                    <button
-                      onClick={() => {
-                        onRename(item.id);
-                        closeMenu();
-                      }}
-
-                      className="
-                        flex
-                        w-full
-                        items-center
-                        gap-2
-                        rounded-lg
-                        px-3
-                        py-2
-                        text-sm
-                        text-white/70
-                        hover:bg-white/10
-                      "
-                    >
-                      <Pencil size={14}/>
-                      Rename
-                    </button>
-
-
-
-                    <button
-                      onClick={() => {
-                        onDuplicate(item.id);
-                        closeMenu();
-                      }}
-
-                      className="
-                        flex
-                        w-full
-                        items-center
-                        gap-2
-                        rounded-lg
-                        px-3
-                        py-2
-                        text-sm
-                        text-white/70
-                        hover:bg-white/10
-                      "
-                    >
-                      <Copy size={14}/>
-                      Duplicate
-                    </button>
-
-
-
-                    <button
-                      onClick={() => {
-                        onDelete(item.id);
-                        closeMenu();
-                      }}
-
-                      className="
-                        flex
-                        w-full
-                        items-center
-                        gap-2
-                        rounded-lg
-                        px-3
-                        py-2
-                        text-sm
-                        text-red-400
-                        hover:bg-red-400/10
-                      "
-                    >
-                      <Trash2 size={14}/>
-                      Delete
-                    </button>
-
-
-                  </div>
-
-                )}
-
-
-              </div>
+              </button>
 
             );
 
           })}
-
-
-
-
-
-          {!filteredItems.length && (
-
-            <div
-              className="
-                rounded-xl
-                border
-                border-dashed
-                border-white/[0.08]
-                px-4
-                py-6
-                text-center
-              "
-            >
-              <p className="text-sm text-white/35">
-                No documents found
-              </p>
-            </div>
-
-          )}
-
 
         </div>
 
@@ -423,6 +274,6 @@ export function KnowledgeSidebar({
       </div>
 
 
-    </div>
+    </aside>
   );
 }

@@ -1,201 +1,171 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import {
   FileText,
-  Clock3,
 } from "lucide-react";
-
-import type { ReactNode } from "react";
 
 
 interface KnowledgeHeaderProps {
+
   title: string;
-  content: string;
+
   updatedAt: string;
-  onTitleChange: (title: string) => void;
+
+  onTitleChange: (
+    title: string
+  ) => void;
+
   menu?: ReactNode;
+
 }
 
 
+
 export function KnowledgeHeader({
+
   title,
-  content,
+
   updatedAt,
+
   onTitleChange,
+
   menu,
+
 }: KnowledgeHeaderProps) {
-
-
-  const words = content
-    .replace(/<[^>]*>/g, "")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean);
-
-
-
-  const wordCount = words.length;
-
-
-
-  const readingTime = Math.max(
-    1,
-    Math.ceil(wordCount / 250)
-  );
-
-
-
-  // Stable formatting across server + client
-  const formattedDate = updatedAt
-    ? new Date(updatedAt)
-        .toISOString()
-        .split("T")[0]
-        .split("-")
-        .reverse()
-        .join(" ")
-    : "Unknown";
-
 
 
   return (
 
     <header
       className="
+        flex
+
+        items-center
+
+        justify-between
+
         border-b
-        border-white/[0.08]
+
+        border-[var(--white-06)]
+
+        px-10
+
+        py-5
       "
     >
+
 
       <div
         className="
           flex
-          items-start
-          justify-between
-          px-12
-          pt-8
-          pb-7
+
+          items-center
+
+          gap-4
         "
       >
 
 
-        <div className="min-w-0">
+        <div
+          className="
+            flex
 
+            h-10
 
-          <div
-            className="
-              mb-5
-              flex
-              items-center
-              gap-2
-              text-xs
-              uppercase
-              tracking-[0.14em]
-              text-white/35
-            "
-          >
+            w-10
 
-            <FileText size={14}/>
+            items-center
 
-            <span>
-              Document
-            </span>
+            justify-center
 
+            rounded-xl
 
-          </div>
+            bg-[var(--accent-soft)]
 
+            text-[color:var(--accent-text)]
+          "
+        >
 
-
-
-
-          <input
-
-            value={title}
-
-            onChange={(e)=>
-              onTitleChange(e.target.value)
-            }
-
-            placeholder="Untitled"
-
-            className="
-              w-full
-              bg-transparent
-              text-4xl
-              font-semibold
-              tracking-tight
-              text-white
-              outline-none
-              placeholder:text-white/20
-            "
-
+          <FileText
+            size={18}
+            strokeWidth={1.8}
           />
-
-
-
-
-
-          <div
-            className="
-              mt-5
-              flex
-              items-center
-              gap-5
-              text-xs
-              text-white/35
-            "
-          >
-
-
-            <span>
-              Updated {formattedDate}
-            </span>
-
-
-
-            <span>
-              {wordCount} words
-            </span>
-
-
-
-            <span
-              className="
-                flex
-                items-center
-                gap-1.5
-              "
-            >
-
-              <Clock3 size={12}/>
-
-              {readingTime} min read
-
-
-            </span>
-
-
-          </div>
-
 
         </div>
 
 
 
+        <div>
 
+          <input
 
-        {menu && (
+            value={title}
 
-          <div
+            onChange={(e) =>
+              onTitleChange(
+                e.target.value
+              )
+            }
+
             className="
-              pt-1
+              w-[420px]
+
+              bg-transparent
+
+              text-xl
+
+              font-semibold
+
+              tracking-tight
+
+              text-[color:var(--foreground)]
+
+              outline-none
+
+              placeholder:text-[color:var(--white-30)]
+            "
+
+          />
+
+
+          <p
+            className="
+              mt-1
+
+              text-xs
+
+              text-[color:var(--white-35)]
             "
           >
-            {menu}
-          </div>
 
-        )}
+            Updated{" "}
+            {new Date(updatedAt).toLocaleString()}
+
+          </p>
 
 
+        </div>
+
+
+      </div>
+
+
+
+
+
+      <div
+        className="
+          flex
+
+          items-center
+
+          gap-2
+        "
+      >
+
+        {menu}
 
       </div>
 
@@ -203,4 +173,5 @@ export function KnowledgeHeader({
     </header>
 
   );
+
 }

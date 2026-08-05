@@ -1,5 +1,5 @@
-import { WorkspaceView } from "@/features/workspace/components/WorkspaceView";
+import { HomeView } from "@/features/home/HomeView";
 
 export default function Home() {
-  return <WorkspaceView />;
+  return <HomeView />;
 }

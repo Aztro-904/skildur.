@@ -37,7 +37,7 @@ export function KnowledgeContext({
       <div
         className="
           border-b
-          border-white/[0.08]
+          border-[var(--white-08)]
           px-6
           py-5
         "
@@ -47,7 +47,7 @@ export function KnowledgeContext({
           className="
             text-sm
             font-semibold
-            text-white
+            text-[color:var(--foreground)]
           "
         >
           Context
@@ -58,7 +58,7 @@ export function KnowledgeContext({
           className="
             mt-1
             text-sm
-            text-white/40
+            text-[color:var(--white-40)]
           "
         >
           Connected information around this document.
@@ -97,7 +97,7 @@ export function KnowledgeContext({
 
             <Boxes
               size={15}
-              className="text-white/45"
+              className="text-[color:var(--white-45)]"
             />
 
 
@@ -107,7 +107,7 @@ export function KnowledgeContext({
                 font-medium
                 uppercase
                 tracking-[0.16em]
-                text-white/35
+                text-[color:var(--white-35)]
               "
             >
               Connected Objects
@@ -127,7 +127,7 @@ export function KnowledgeContext({
                 rounded-xl
                 border
                 border-dashed
-                border-white/[0.08]
+                border-[var(--white-08)]
                 p-5
                 text-center
               "
@@ -137,7 +137,7 @@ export function KnowledgeContext({
                 size={18}
                 className="
                   mx-auto
-                  text-white/25
+                  text-[color:var(--white-25)]
                 "
               />
 
@@ -146,7 +146,7 @@ export function KnowledgeContext({
                 className="
                   mt-3
                   text-sm
-                  text-white/40
+                  text-[color:var(--white-40)]
                 "
               >
                 No connections yet.
@@ -158,7 +158,7 @@ export function KnowledgeContext({
                   mt-2
                   text-xs
                   leading-5
-                  text-white/25
+                  text-[color:var(--white-25)]
                 "
               >
                 Link projects, data, and objects to
@@ -192,7 +192,7 @@ export function KnowledgeContext({
                     px-3
                     py-3
                     transition
-                    hover:bg-white/[0.04]
+                    hover:bg-[var(--white-04)]
                   "
 
                 >
@@ -204,7 +204,7 @@ export function KnowledgeContext({
                       className="
                         text-sm
                         font-medium
-                        text-white
+                        text-[color:var(--foreground)]
                       "
                     >
                       {object.title}
@@ -215,7 +215,7 @@ export function KnowledgeContext({
                       className="
                         mt-1
                         text-xs
-                        text-white/35
+                        text-[color:var(--white-35)]
                       "
                     >
                       {object.type}
@@ -231,10 +231,10 @@ export function KnowledgeContext({
                     size={15}
 
                     className="
-                      text-white/20
+                      text-[color:var(--white-20)]
                       transition
                       group-hover:translate-x-0.5
-                      group-hover:text-white/50
+                      group-hover:text-[color:var(--white-50)]
                     "
 
                   />
@@ -264,7 +264,7 @@ export function KnowledgeContext({
           className="
             mt-10
             border-t
-            border-white/[0.08]
+            border-[var(--white-08)]
             pt-6
           "
         >
@@ -281,7 +281,7 @@ export function KnowledgeContext({
 
             <Sparkles
               size={15}
-              className="text-white/40"
+              className="text-[color:var(--white-40)]"
             />
 
 
@@ -291,7 +291,7 @@ export function KnowledgeContext({
                 font-medium
                 uppercase
                 tracking-[0.16em]
-                text-white/30
+                text-[color:var(--white-30)]
               "
             >
               Intelligence
@@ -306,8 +306,8 @@ export function KnowledgeContext({
             className="
               rounded-xl
               border
-              border-white/[0.08]
-              bg-white/[0.02]
+              border-[var(--white-08)]
+              bg-[var(--white-02)]
               p-4
             "
           >
@@ -315,7 +315,7 @@ export function KnowledgeContext({
             <p
               className="
                 text-sm
-                text-white/50
+                text-[color:var(--white-50)]
               "
             >
               AI insights will appear here as Skildur
@@ -338,7 +338,7 @@ export function KnowledgeContext({
           className="
             mt-6
             border-t
-            border-white/[0.08]
+            border-[var(--white-08)]
             pt-6
           "
         >
@@ -351,7 +351,7 @@ export function KnowledgeContext({
               text-xs
               uppercase
               tracking-[0.16em]
-              text-white/30
+              text-[color:var(--white-30)]
             "
           >
 
@@ -367,7 +367,7 @@ export function KnowledgeContext({
             className="
               mt-3
               text-sm
-              text-white/25
+              text-[color:var(--white-25)]
             "
           >
             Document history will appear here.
